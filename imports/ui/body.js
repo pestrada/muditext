@@ -33,9 +33,31 @@ var leerLineas = function (docs){
 
   Template.editor.events({
   'click .archivo' (event){
-     var lineas = Documentos.find({name:"index",extension:"html"});
-//db.bios.find( { files}, { name: 1 , lines:1} )      
-     console.log(lineas)
+     var docs = Documentos.find({
+      "files.name":"index"
+    },
+    {
+      _id: 0, files: { 
+        
+        $elemMatch:{
+          "name":"index", 
+          "extension":"html"
+        }
+      } 
+    });
+
+     leerLineas(docs);
+     var editor = $('.CodeMirror')[0].CodeMirror;
+     // editor.setValue(docs);
+
+console.log(docs.fetch());
+   /*  db.getCollection('documentos').find({
+    "files.name":"index"
+},
+    {
+        _id:0,files:{$elemMatch:{name:"index", extension:"html"}} 
+})*/
+   
   }
 
 
