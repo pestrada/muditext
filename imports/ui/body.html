@@ -1,0 +1,19 @@
+<body>
+ {{> editor}}
+</body>
+
+
+<template name="editor">
+     <h1>Write your code !!</h1>
+
+<div>
+  
+<div id="archivos">
+    {{#each documentos}}
+     {{> carpetas}}
+    {{/each}}
+    </div>
+</div>
+ {{>codemirror}}
+
+</template>
