@@ -9,9 +9,12 @@ if (Meteor.isServer) {
   // This code only runs on the server
   // Only publish tasks that are public or belong to the current user
   Meteor.publish('projects', function documentPublication() {
-  	
-     return Projects.find({});
+  	 return Projects.find({});
     });
 }
 
-
+Meteor.methods({
+	'project.find'(){
+       return Projects.find({}).fetch()[0];
+	}
+});

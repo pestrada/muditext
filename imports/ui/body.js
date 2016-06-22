@@ -1,63 +1,63 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { Documentos } from '../api/documentos.js';
-import './documento.js'
+import { Projects } from '../api/documents.js';
+import './document.js'
 import './body.html';
 
 Template.editor.onCreated(function bodyOnCreated() {
 });
 
 Template.editor.helpers({
-  documentos() {
-    return Documentos.find({}).fetch();
+  projects() {
+    return Projects.find({}).fetch();
     },
+
 });
 
-// ver la forma de que los datos que llegan en coSolA los tome y los guade en una variable y que esa varieble tome  los demas que lleguen y porner  el resutdo en la 
-//varieble resultado
-//esa variueble resulado es la que muestra el texto en el text area
 
-
-var leerLineas = function (docs){
-  var lineas = docs.fetch()[0].files[0].lines;
-  var resultado="";
-  for (var i=0; i<lineas.length; i++) {
-   resultado = resultado+lineas[i].text+"\n";
+var readLines = function (docs){
+  var lines = docs.fetch()[0].files[0].lines;
+  var result="";
+  for (var i=0; i<lines.length; i++) {
+   result = result+lines[i].text+"\n";
   }
-  return resultado;
+  return result;
+}
+
+    
+var searchs = function (docs,filename){
+  var files = docs.files;
+  var result="";
+  for (var i=0; i<files.length; i++) {  
+if (filename==files[i]) {
+  //files.name+"."+extension;
+    result = result+lines[i].text+"\n";
+}
+
+  }
+  return result;
 }
   
 
-//buscar la manera de hacer la busqueda en mongo y filtrarla 
-//sino hacer la busqueda y desues el filtrado 
-
   Template.editor.events({
-  'click .archivo' (event){
-     var docs = Documentos.find({
-      "files.name":"index"
-    },
-    {
-      _id: 0, files: { 
-        
-        $elemMatch:{
-          "name":"index", 
-          "extension":"html"
-        }
-      } 
-    });
-
-     leerLineas(docs);
+  'click .records' (event){
+    /* var docs = Projects.find({
+      "folder":"projectname"
+    }); */ 
+  var filename= event.target.innerText;
+  Meteor.call('project.find',(err, res) => {
+    if (err) {
+      alert(err);
+    } else {
+      console.log(res);
+     var text = searchs(res, filename);
+      var editor = $('.CodeMirror')[0].CodeMirror;
+      editor.setValue(text);   
+    }
+  });
+  /*var proof = searchs(docs);
      var editor = $('.CodeMirror')[0].CodeMirror;
-     // editor.setValue(docs);
-
-console.log(docs.fetch());
-   /*  db.getCollection('documentos').find({
-    "files.name":"index"
-},
-    {
-        _id:0,files:{$elemMatch:{name:"index", extension:"html"}} 
-})*/
-   
+      editor.setValue("");   */
   }
 
 
@@ -70,25 +70,19 @@ Template.editor.onRendered( function() {
     theme:"monokai",
     mode:"text/html",
     lineWrapping: true,
-    cursorHeight: 0.85
+    cursorHeight: 0.90
   });
 
   this.autorun(() => {
-     var subscriptions = Meteor.subscribe('documentos');
+     var subscriptions = Meteor.subscribe('projects');
      const isReady = subscriptions.ready();
-     var docs = Documentos.find({});
+     var docs = Projects.find({});
      if (isReady && docs) {
-      var lineas = leerLineas(docs);
-
-      this.editor.setValue(lineas);
+      var lines = readLines(docs);
+      this.editor.setValue(lines);
      }
   });
 });
 
+
  
-/*Template.registerHelper('prueba',function () {
-    return Documentos.find({});
-  });*/
-/*Template.registerHelper( 'allCaps', ( string ) => {
-  return Documentos.find({});
-});*/
