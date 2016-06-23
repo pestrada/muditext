@@ -29,35 +29,55 @@ var searchs = function (docs,filename){
   var files = docs.files;
   var result="";
   for (var i=0; i<files.length; i++) {  
-if (filename==files[i]) {
-  //files.name+"."+extension;
-    result = result+lines[i].text+"\n";
-}
+    var name= docs.files[i].name;
+    var extension= docs.files[i].extension;
+    var nameExtencion = name+"."+extension;
+    if (filename==nameExtencion) {
+     var lines = docs.files[i].lines;
+       for (var i=0; i<lines.length; i++) {
+        result = result+lines[i].text+"\n";
+      }
 
+    }
+  }
+
+   if(extension=="css"){
+           var editor = $('.CodeMirror')[0].CodeMirror;
+           editor.setOption("mode","text/css");    
+        }else{
+          if(extension=="js"){
+           var editor = $('.CodeMirror')[0].CodeMirror;
+           editor.setOption("mode","text/javascript");  
+        }else{
+          if(extension=="php"){
+           var editor = $('.CodeMirror')[0].CodeMirror;
+           editor.setOption("mode","text/x-php");  
+        }else{
+          if(extension=="html"){
+           var editor = $('.CodeMirror')[0].CodeMirror;
+           editor.setOption("mode","text/html");  
+            }
+        }
+     }
   }
   return result;
 }
+
+ 
   
 
   Template.editor.events({
-  'click .records' (event){
-    /* var docs = Projects.find({
-      "folder":"projectname"
-    }); */ 
-  var filename= event.target.innerText;
-  Meteor.call('project.find',(err, res) => {
+    'click .records' (event){
+    var filename= event.target.innerText;
+    Meteor.call('project.find',(err, res) => {
     if (err) {
       alert(err);
     } else {
-      console.log(res);
-     var text = searchs(res, filename);
-      var editor = $('.CodeMirror')[0].CodeMirror;
-      editor.setValue(text);   
-    }
-  });
-  /*var proof = searchs(docs);
-     var editor = $('.CodeMirror')[0].CodeMirror;
-      editor.setValue("");   */
+        var text = searchs(res, filename);
+        var editor = $('.CodeMirror')[0].CodeMirror;
+        editor.setValue(text);   
+      }
+   });
   }
 
 
@@ -68,6 +88,9 @@ Template.editor.onRendered( function() {
     lineNumbers: true,
     fixedGutter: true,
     theme:"monokai",
+    //PHP application/x-httpd-php
+    //JAVASCRIPT text/javascript
+    //HTML "text/html"
     mode:"text/html",
     lineWrapping: true,
     cursorHeight: 0.90
