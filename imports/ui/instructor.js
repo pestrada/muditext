@@ -68,24 +68,16 @@ var searchs = function (docs,filename){
   return result;
 }
 
-var save = function (){
-      var editor = $('.CodeMirror')[0].CodeMirror;
-       var data = editor.getValue(',');   
 
-console.log(data);
-}
+Template.instructor.helpers({
+  projects() {
+    return Projects.find({}).fetch();
+    },
 
-
-  Template.editor.events({
-    'click .save' (event){
-      save();
-    }
-  });
+});
 
 
-
-
-  Template.editor.events({
+   Template.instructor.events({
     'click .records' (event){
     var filename= event.target.innerText;
     Meteor.call('project.find',(err, res) => {
@@ -102,19 +94,16 @@ console.log(data);
  });
 
 
-
-
-Template.editor.onRendered( function() {
+Template.instructor.onRendered( function() {
   this.editor = CodeMirror.fromTextArea( this.find( "#editorcode" ), {
+    readOnly: true,
     lineNumbers: true,
     fixedGutter: true,
     theme:"monokai",
-    //PHP application/x-httpd-php
-    //JAVASCRIPT text/javascript
-    //HTML "text/html"
     mode:"text/html",
     lineWrapping: true,
     cursorHeight: 0.90
+
   });
 
   this.autorun(() => {
@@ -128,6 +117,3 @@ Template.editor.onRendered( function() {
   });
 });
 
-
-
- 
