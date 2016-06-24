@@ -4,6 +4,7 @@ import { Projects } from '../api/documents.js';
 import './document.js'
 import './body.html';
 
+
 Template.editor.onCreated(function bodyOnCreated() {
 });
 
@@ -41,6 +42,10 @@ var searchs = function (docs,filename){
     }
   }
 
+
+
+
+
    if(extension=="css"){
            var editor = $('.CodeMirror')[0].CodeMirror;
            editor.setOption("mode","text/css");    
@@ -63,8 +68,22 @@ var searchs = function (docs,filename){
   return result;
 }
 
- 
-  
+var save = function (){
+      var editor = $('.CodeMirror')[0].CodeMirror;
+       var data = editor.getValue("\n");   
+
+console.log(data);
+}
+
+
+  Template.editor.events({
+    'click .save' (event){
+      save();
+    }
+  });
+
+
+
 
   Template.editor.events({
     'click .records' (event){
@@ -80,8 +99,10 @@ var searchs = function (docs,filename){
    });
   }
 
-
  });
+
+
+
 
 Template.editor.onRendered( function() {
   this.editor = CodeMirror.fromTextArea( this.find( "#editorcode" ), {
@@ -106,6 +127,57 @@ Template.editor.onRendered( function() {
      }
   });
 });
+
+
+
+Template.instructor.helpers({
+  projects() {
+    return Projects.find({}).fetch();
+    },
+
+});
+
+
+   Template.instructor.events({
+    'click .records' (event){
+    var filename= event.target.innerText;
+    Meteor.call('project.find',(err, res) => {
+    if (err) {
+      alert(err);
+    } else {
+        var text = searchs(res, filename);
+        var editor = $('.CodeMirror')[0].CodeMirror;
+        editor.setValue(text);   
+      }
+   });
+  }
+
+ });
+
+
+Template.instructor.onRendered( function() {
+  this.editor = CodeMirror.fromTextArea( this.find( "#editorcode" ), {
+    readOnly: true,
+    lineNumbers: true,
+    fixedGutter: true,
+    theme:"monokai",
+    mode:"text/html",
+    lineWrapping: true,
+    cursorHeight: 0.90
+
+  });
+
+  this.autorun(() => {
+     var subscriptions = Meteor.subscribe('projects');
+     const isReady = subscriptions.ready();
+     var docs = Projects.find({});
+     if (isReady && docs) {
+      var lines = readLines(docs);
+      this.editor.setValue(lines);
+     }
+  });
+});
+
 
 
  

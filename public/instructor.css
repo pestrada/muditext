@@ -1,0 +1,31 @@
+body {
+   background: url("stardust.png");
+   text-align: center;
+}
+a{
+	color: white;
+}
+
+
+#files{
+margin-bottom: 100%;
+position: absolute;
+left: 0%;
+min-height: 30%;
+min-width: 20%;
+background-color: white;
+border: 3px solid#58FAD0;
+padding: 10px;
+}
+
+.CodeMirror { 
+position: absolute;
+right: 2%;
+left: 25%;
+margin-right: 10%;
+text-align: left; 
+min-height: 70%;
+min-width: 10%;
+font-size: 110%;
+border: 3px solid#58FAD0;
+}

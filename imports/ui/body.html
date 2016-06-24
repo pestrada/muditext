@@ -1,11 +1,32 @@
-<body>
- {{> editor}}
-</body>
-
 <template name="editor">
      <h1>Write your code !!</h1>
 
 <div>
+	 <a href="{{pathFor route='instructor'}}" target="_blank">Instructor view</a>
+
+<div id="files">
+    {{#each projects}}
+     {{> folders}}
+    {{/each}}
+    </div>
+</div>
+
+ {{>codemirror}}
+
+  <button id="save">Save</button>
+
+</template>
+
+
+
+
+
+<template name="instructor">
+	<link rel="stylesheet" href="instructor.css">
+<h1>View of instructor</h1>
+
+<div>
+  	 <a href="{{pathFor route='home'}}" target="_blank">My view </a>
   
 <div id="files">
     {{#each projects}}
