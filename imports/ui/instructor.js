@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Projects } from '../api/documents.js';
 import './document.js'
-import './body.html';
+import './instructor.html';
 
 
 Template.editor.onCreated(function bodyOnCreated() {
@@ -41,9 +41,6 @@ var searchs = function (docs,filename){
 
     }
   }
-
-
-
 
 
    if(extension=="css"){

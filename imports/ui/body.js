@@ -19,6 +19,7 @@ Template.editor.helpers({
 var readLines = function (docs){
   var lines = docs.fetch()[0].files[0].lines;
   var result="";
+
   for (var i=0; i<lines.length; i++) {
    result = result+lines[i].text+"\n";
   }
@@ -70,15 +71,20 @@ var searchs = function (docs,filename){
 
 var save = function (){
       var editor = $('.CodeMirror')[0].CodeMirror;
-       var data = editor.getValue(',');   
-
-console.log(data);
+       var data = editor.getValue("\n"); 
+      var arrayData= data.split("\n");
+       var projectId = $(".save").attr("data-projectId"); 
+Projects.update(new Mongo.ObjectID(projectId),
+{$set:
+ { "files.name": arrayData}});
+alert("Guardado");
 }
 
 
   Template.editor.events({
     'click .save' (event){
       save();
+
     }
   });
 
@@ -124,6 +130,7 @@ Template.editor.onRendered( function() {
      if (isReady && docs) {
       var lines = readLines(docs);
       this.editor.setValue(lines);
+      $(".save").attr("data-projectId",docs.fetch()[0]._id);
      }
   });
 });

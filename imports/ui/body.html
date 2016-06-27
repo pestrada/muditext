@@ -13,28 +13,8 @@
 
  {{>codemirror}}
 
-  <button class="save">Save</button>
+  <button class="save" data-projectId="">Save</button>
 
 </template>
 
 
-
-
-
-<template name="instructor">
-	<link rel="stylesheet" href="instructor.css">
-<h1>View of instructor</h1>
-
-<div>
-  	 <a href="{{pathFor route='home'}}" target="_blank">My view </a>
-  
-<div id="files">
-    {{#each projects}}
-     {{> folders}}
-    {{/each}}
-    </div>
-</div>
-
- {{>codemirror}}
-
-</template>
