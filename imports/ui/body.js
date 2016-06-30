@@ -45,9 +45,7 @@ var searchs = function (docs,filename){
 
 
 
-
-
-   if(extension=="css"){
+        if(extension=="css"){
            var editor = $('.CodeMirror')[0].CodeMirror;
            editor.setOption("mode","text/css");    
         }else{
@@ -71,13 +69,26 @@ var searchs = function (docs,filename){
 
 var save = function (){
       var editor = $('.CodeMirror')[0].CodeMirror;
-       var data = editor.getValue("\n"); 
+      var data = editor.getValue("\n"); 
       var arrayData= data.split("\n");
-       var projectId = $(".save").attr("data-projectId"); 
+      var projectId = $(".save").attr("data-projectId"); 
+      var arrayMongo =[];
+
+  for (var i=0; i<arrayData.length; i++) {
+    result = { 
+      text: arrayData[i]
+    };
+    arrayMongo[i] = result;
+ }
+
+
+var setModifier = { $set: {} };
+var index =1;
+setModifier.$set['files.'+index+'.lines'] = arrayMongo;
+
 Projects.update(new Mongo.ObjectID(projectId),
-{$set:
- { "files.name": arrayData}});
-alert("Guardado");
+setModifier);
+alert("\"Guardado\"");
 }
 
 
@@ -88,9 +99,6 @@ alert("Guardado");
     }
   });
 
-
-
-
   Template.editor.events({
     'click .records' (event){
     var filename= event.target.innerText;
@@ -99,6 +107,7 @@ alert("Guardado");
       alert(err);
     } else {
         var text = searchs(res, filename);
+        
         var editor = $('.CodeMirror')[0].CodeMirror;
         editor.setValue(text);   
       }

@@ -4,16 +4,21 @@ body {
 }
 a{
 	color: white;
+
 }
 
 
+.records{
+border: 3px solid#4CAF50;
+}
+
 #files{
+opacity: 1.0;
 margin-bottom: 100%;
 position: absolute;
 left: 0%;
 min-height: 30%;
 min-width: 20%;
-background-color: white;
 border: 3px solid#58FAD0;
 padding: 10px;
 }
