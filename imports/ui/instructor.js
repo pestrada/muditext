@@ -1,20 +1,19 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { Projects } from '../api/documents.js';
+import { Instructor } from '../api/documents.js';
 import './document.js'
 import './instructor.html';
 
 
-Template.editor.onCreated(function bodyOnCreated() {
+Template.instructor.onCreated(function bodyOnCreated() {
 });
 
-Template.editor.helpers({
-  projects() {
-    return Projects.find({}).fetch();
+Template.instructor.helpers({
+  instructor() {
+    return Instructor.find({}).fetch();
     },
 
 });
-
 
 var readLines = function (docs){
   var lines = docs.fetch()[0].files[0].lines;
@@ -65,19 +64,10 @@ var searchs = function (docs,filename){
   return result;
 }
 
-
-Template.instructor.helpers({
-  projects() {
-    return Projects.find({}).fetch();
-    },
-
-});
-
-
    Template.instructor.events({
     'click .records' (event){
     var filename= event.target.innerText;
-    Meteor.call('project.find',(err, res) => {
+    Meteor.call('instructor.find',(err, res) => {
     if (err) {
       alert(err);
     } else {
@@ -104,9 +94,9 @@ Template.instructor.onRendered( function() {
   });
 
   this.autorun(() => {
-     var subscriptions = Meteor.subscribe('projects');
+     var subscriptions = Meteor.subscribe('instructor');
      const isReady = subscriptions.ready();
-     var docs = Projects.find({});
+     var docs = Instructor.find({});
      if (isReady && docs) {
       var lines = readLines(docs);
       this.editor.setValue(lines);

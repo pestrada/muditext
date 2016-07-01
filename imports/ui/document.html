@@ -11,7 +11,7 @@
 <template name="folders">
   
    {{#each files}}
-      <p class="records">
+      <p class="records" data-recorId={{@index}}>
           {{> file}}
      </p>
     {{/each}}
@@ -30,7 +30,7 @@
 
   <template name="codemirror">
     <div class="editor-preview">
-      <textarea id="editorcode"></textarea>
+      <textarea id="editorcode" data-currentFile=""></textarea>
     </div>
 </template>
 

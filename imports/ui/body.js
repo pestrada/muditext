@@ -43,8 +43,6 @@ var searchs = function (docs,filename){
     }
   }
 
-
-
         if(extension=="css"){
            var editor = $('.CodeMirror')[0].CodeMirror;
            editor.setOption("mode","text/css");    
@@ -67,6 +65,8 @@ var searchs = function (docs,filename){
   return result;
 }
 
+
+
 var save = function (){
       var editor = $('.CodeMirror')[0].CodeMirror;
       var data = editor.getValue("\n"); 
@@ -81,9 +81,10 @@ var save = function (){
     arrayMongo[i] = result;
  }
 
+var index= $("#editorcode").attr("data-currentFile");
 
 var setModifier = { $set: {} };
-var index =1;
+
 setModifier.$set['files.'+index+'.lines'] = arrayMongo;
 
 Projects.update(new Mongo.ObjectID(projectId),
@@ -95,13 +96,18 @@ alert("\"Guardado\"");
   Template.editor.events({
     'click .save' (event){
       save();
-
     }
   });
 
   Template.editor.events({
     'click .records' (event){
+    var numberIndex = $(event.target).attr("data-recorId");
+    var currentFile= $("#editorcode").attr("data-currentFile",numberIndex);
+    //var index=currentFile;
     var filename= event.target.innerText;
+    //var numberIndex = $(event.target).attr("data-recorId");
+    //var currentFile= $("#editorcode").attr("data-currentFile",numberIndex);
+
     Meteor.call('project.find',(err, res) => {
     if (err) {
       alert(err);
