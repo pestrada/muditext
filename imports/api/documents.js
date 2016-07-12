@@ -21,13 +21,13 @@ if (Meteor.isServer) {
 Meteor.methods({
 	'project.find'(){
        return Projects.find({}).fetch()[0];
-	}
-});
-
-
-Meteor.methods({
-	'instructor.find'(){
+	},
+  'instructor.find'(){
        return Instructor.find({}).fetch()[0];
-	}
+  },
+  'project.update' (){
+    
+  }
+
 });
 
