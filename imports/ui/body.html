@@ -1,20 +1,61 @@
 <template name="editor">
-     <h1>Write your code !!</h1>
-
 <div>
-	 <a href="{{pathFor route='instructor'}}" target="_blank">Instructor view</a>
-
-<div id="files">
-    {{#each projects}}
-     {{> folders}}
-    {{/each}}
-    </div>
 </div>
 
- {{>codemirror}}
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Editor</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="{{pathFor route='instructor'}}" target="_blank">Instructor view</a></li>
+      <li><a class="save" data-projectId="" >Guardar</a></li> 
+      <li><a class="view">Vista previa</a></li> 
+    </ul>
+  </div>
+</nav>
 
-  <button class="save" data-projectId="">Save</button>
+
+ <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+              <li>
+                    <a href="#">Practica 15</a>
+                       {{#each projects}}
+     					{{> folders}}
+   						 {{/each}}
+
+                </li>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+  
+ {{>codemirror}}
+    <!-- Bootstrap Core JavaScript -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+
+
 
 </template>
-
-

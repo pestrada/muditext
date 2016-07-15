@@ -1,25 +1,9 @@
 /* CSS declarations go here */
 body {
-   background: url("fondo.png");
+   background:#000000;
    text-align: center;
 }
 
-.save{
-
-	position: absolute;
-left: 90%;
-background-color: #4CAF50; /*  #008CBA*/
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-
-
-
-}
 h1{
   color: white;
 }
@@ -31,34 +15,103 @@ a{
 
 #contenedor{
   background: white;
-
 }
 
+.editor-preview{
+    width: 80%;
+    float: right;
+}
 
 .records{
-border: 3px solid#4CAF50;
-background-color: white;
+    border: 3px
+    color: black;
 }
 
 .CodeMirror { 
-position: absolute;
-right: 2%;
-left: 25%;
-margin-right: 10%;
-text-align: left; 
-min-height: 70%;
-min-width: 10%;
-font-size: 110%;
-border: 3px solid#4CAF50;
+    position: absolute;
+    text-align: left; 
+    min-height: 100%;
+    min-width:80%;
+    font-size: 110%;
+    border: 3px solid#4CAF50;
 }
 
 #files{
-opacity: 1.0;
-margin-bottom: 100%;
-position: absolute;
-left: 0%;
-min-height: 30%;
-min-width: 20%;
-border: 3px solid#4CAF50;
-padding: 10px;
+    opacity: 1.0;
+    margin-bottom: 100%;
+    position: absolute;
+    left: 0%;
+    min-height: 30%;
+    min-width: 20%;
+    border: 3px solid#4CAF50;
+    padding: 10px;
 }
+
+
+/* Toggle Styles */
+
+#wrapper {
+    height: 100%;
+    float: left;
+    width: 20%;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+
+}
+
+#sidebar-wrapper {
+    overflow-y: auto;
+    background:#000;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.sidebar-nav {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #999999;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    font-size: 18px;
+    line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #fff;
+    background: none;
+}
+
