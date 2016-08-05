@@ -1,36 +1,167 @@
 body {
-   background: url("stardust.png");
+   background:#222D32;
    text-align: center;
 }
-a{
-	color: white;
 
+
+h1{
+  color: white;
 }
 
+a{
+	font-size: 20px;
+	color: white;
+}
+
+#contenedor{
+  background: white;
+}
+
+/*ditor-preview{
+    width: 80%;
+    float: right;
+}*/
 
 .records{
-border: 3px solid#4CAF50;
-}
-
-#files{
-opacity: 1.0;
-margin-bottom: 100%;
-position: absolute;
-left: 0%;
-min-height: 30%;
-min-width: 20%;
-border: 3px solid#58FAD0;
-padding: 10px;
+    border: 3px
+    color: black;
 }
 
 .CodeMirror { 
-position: absolute;
-right: 2%;
-left: 25%;
-margin-right: 10%;
-text-align: left; 
-min-height: 70%;
-min-width: 10%;
-font-size: 110%;
-border: 3px solid#58FAD0;
+    position: absolute;
+    text-align: left; 
+    min-height:100%;
+    min-width: 100%;
+    font-size: 110%;
+    border: 3px solid#272822;
+}
+
+#files{
+    opacity: 1.0;
+    margin-bottom: 100%;
+    position: absolute;
+    left: 0%;
+    min-height: 30%;
+    min-width: 20%;
+    border: 3px solid#4CAF50;
+    padding: 10px;
+}
+
+.navbar-default {
+    background-color:#3C8DBC;
+    border-color: black;
+
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #FFFFFF;
+}
+.navbar-default .navbar-brand {
+  color: #FFFFFF;
+}
+
+.navbar {
+     margin-bottom: 0px;
+
+}
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
+
+#wrapper {
+  padding-left: 250px;
+  -webkit-transition: all .25s ease-in-out;
+  -moz-transition: all .25s ease-in-out;
+  transition: all .25s ease-in-out;
+}
+
+#wrapper.toggled {
+  padding-left: 0;
+}
+#wrapper.toggled #sideBar {
+  left: -300px;
+  opacity: 0;
+  -webkit-transition: all .25s ease-in-out;
+  -moz-transition: all .25s ease-in-out;
+  transition: all .25s ease-in-out;
+}
+
+#sideBar {
+  width: 265px;
+  position: fixed;
+  opacity: .99;
+  left: 0;
+  color: white;
+  background: #222D32;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-transition: all .25s ease-in-out;
+  -moz-transition: all .25s ease-in-out;
+  transition: all .25s ease-in-out;
+}
+
+.main-nav {
+  list-style-type: none;
+  -webkit-margin-before: 0px;
+  -webkit-margin-after: 0px;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 0px;
+  margin-bottom: 0;
+}
+
+.main-nav li.main-search {
+  border: none;
+  box-shadow: none;
+}
+.main-nav li.main-search .search-input.form-control {
+  border-radius: 0;
+  background: #444;
+  border: none;
+  color: #fff;
+  font-size: 12px;
+  font-weight: normal;
+}
+.main-nav li.main-search i {
+  float: right;
+  margin-top: -25px;
+  margin-right: 15px;
+  color: #999;
+}
+.main-nav li.nav-brand {
+  height: 80px;
+  line-height: 80px;
+  font-size: 18px;
+  border: none;
+  box-shadow: none;
+}
+.main-nav li a {
+  color: #fff;
+  display: block;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+
+
+@media (max-width: 768px) {
+  #wrapper {
+    padding-left: 0;
+  }
+  #wrapper.toggled {
+    padding-left: 250px;
+  }
+  #wrapper.toggled #sideBar {
+    left: 0;
+    opacity: 1;
+  }
+
+  #sideBar {
+    left: -300px;
+  }
+}
+
+.main-nav li {
+    line-height: 40px;
+    padding: 0 15px;
+    box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.12);
 }

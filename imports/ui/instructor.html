@@ -1,17 +1,50 @@
 <template name="instructor">
 	<link rel="stylesheet" href="instructor.css">
-<h1>View of instructor</h1>
+<nav class="navbar navbar-default" role="navigation">
+  <!-- El logotipo y el icono que despliega el menú se agrupan
+       para mostrarlos mejor en los dispositivos móviles -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse"
+            data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Desplegar navegación</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#"> <span class="glyphicon glyphicon-edit"></span> Editor Instructor</a>
+    <a class="navbar-brand"><span class="glyphicon glyphicon-folder-open"  id="valores"></span></a>
 
-<div>
-  	 <a href="{{pathFor route='home'}}" target="_blank">My view </a>
-  
-<div id="files">
-    {{#each instructor}}
+        </div>
+  <!-- Agrupar los enlaces de navegación, los formularios y cualquier
+       otro elemento que se pueda ocultar al minimizar la barra -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse"> 
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="{{pathFor route='home'}}" target="_blank"><span class="glyphicon glyphicon-user"></span> My view</a></li>
+         <li><a id="menuToggler"><span class="glyphicon glyphicon-file"></span> Archivos</a></li>
+    </ul>
+  </div>
+</nav> 
+  <div id="wrapper">
+        <aside id="sideBar">
+            <ul class="main-nav">
+                <li>
+                   <a href="#">Practica 15</a>
+                      {{#each instructor}}
      {{> folders}}
     {{/each}}
-    </div>
-</div>
+                </li>
+            </ul>
+        </aside>
 
+          <section class="main-section">
+            <!-- Add Your Content Inside -->
+            <div class="content">
  {{>codemirror}}
+            </div>
+            <!-- /.content -->
+        </section>
+        <!-- /.main-section -->
+    </div>
 
-</template>
+    </template>
