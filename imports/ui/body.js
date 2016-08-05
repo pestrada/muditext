@@ -54,32 +54,28 @@ var searchs = function (docs,filename){
     var nameExtencion = name+"."+extension;
     if (filename==nameExtencion) {
      var lines = docs.files[i].lines;
-       for (var i=0; i<lines.length; i++) {
-        result = result+lines[i].text+"\n";
+       for (var j=0; j<lines.length; j++) {
+        result = result+lines[j].text+"\n";
       }
 
     }
   }
+
+     var extension=filename.split(".")[1];
+
         if(extension=="html"){
-           var editor = $('.CodeMirror')[0].CodekkoMirror;
+           var editor = $('.CodeMirror')[0].CodeMirror;
            editor.setOption("mode","text/html");    
-        }else{
-        if(extension=="css"){
+        }else if(extension=="css"){
            var editor = $('.CodeMirror')[0].CodeMirror;
            editor.setOption("mode","text/css");    
-        }else{
-          if(extension=="js"){
+        }else if(extension=="js"){
            var editor = $('.CodeMirror')[0].CodeMirror;
            editor.setOption("mode","text/javascript");  
-        }else{
-          if(extension=="php"){
+        }else if(extension=="php"){
            var editor = $('.CodeMirror')[0].CodeMirror;
            editor.setOption("mode","text/x-php"); 
         }
-     }
-  }
-}
-
   return result;
 
 }
