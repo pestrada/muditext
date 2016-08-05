@@ -25,6 +25,13 @@ Template.editor.helpers({
   });
 
 
+
+  Template.editor.events({
+    'click #menuToggler' (event){
+  $('#wrapper').toggleClass('toggled');
+     }
+  });
+
 var readLines = function (docs){
   var num = 0;
   var lines = docs.fetch()[0].files[num].lines;
@@ -54,7 +61,7 @@ var searchs = function (docs,filename){
     }
   }
         if(extension=="html"){
-           var editor = $('.CodeMirror')[0].CodeMirror;
+           var editor = $('.CodeMirror')[0].CodekkoMirror;
            editor.setOption("mode","text/html");    
         }else{
         if(extension=="css"){
@@ -117,6 +124,7 @@ Projects.update(new Mongo.ObjectID(projectId),
     var numberIndex = $(event.target).attr("data-recorId");
     var currentFile= $("#editorcode").attr("data-currentFile",numberIndex);
     var filename= event.target.innerText;
+    var tu=document.getElementById('valores').innerHTML =" "+filename;
     Meteor.call('project.find',(err, res) => {
     if (err) {
       alert(err);
@@ -127,8 +135,9 @@ Projects.update(new Mongo.ObjectID(projectId),
         }
      });
     }
-
  });
+
+
 
 
 Template.editor.onRendered( function() {

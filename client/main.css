@@ -1,6 +1,6 @@
 /* CSS declarations go here */
 body {
-   background:#000000;
+   background:#222D32;
    text-align: center;
 }
 
@@ -18,10 +18,10 @@ a{
   background: white;
 }
 
-.editor-preview{
+/*ditor-preview{
     width: 80%;
     float: right;
-}
+}*/
 
 .records{
     border: 3px
@@ -31,10 +31,10 @@ a{
 .CodeMirror { 
     position: absolute;
     text-align: left; 
-    min-height: 100%;
-    min-width:80%;
+    min-height:100%;
+    min-width: 100%;
     font-size: 110%;
-    border: 3px solid#4CAF50;
+    border: 3px solid#272822;
 }
 
 #files{
@@ -48,71 +48,121 @@ a{
     padding: 10px;
 }
 
+.navbar-default {
+    background-color:#3C8DBC;
+    border-color: black;
 
-/* Toggle Styles */
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #FFFFFF;
+}
+.navbar-default .navbar-brand {
+  color: #FFFFFF;
+}
+
+.navbar {
+     margin-bottom: 0px;
+
+}
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
 
 #wrapper {
-    height: 100%;
-    float: left;
-    width: 20%;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+  padding-left: 250px;
+  -webkit-transition: all .25s ease-in-out;
+  -moz-transition: all .25s ease-in-out;
+  transition: all .25s ease-in-out;
 }
 
 #wrapper.toggled {
-
+  padding-left: 0;
+}
+#wrapper.toggled #sideBar {
+  left: -300px;
+  opacity: 0;
+  -webkit-transition: all .25s ease-in-out;
+  -moz-transition: all .25s ease-in-out;
+  transition: all .25s ease-in-out;
 }
 
-#sidebar-wrapper {
-    overflow-y: auto;
-    background:#000;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+#sideBar {
+  width: 265px;
+  position: fixed;
+  opacity: .99;
+  left: 0;
+  color: white;
+  background: #222D32;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-transition: all .25s ease-in-out;
+  -moz-transition: all .25s ease-in-out;
+  transition: all .25s ease-in-out;
 }
 
-.sidebar-nav {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+.main-nav {
+  list-style-type: none;
+  -webkit-margin-before: 0px;
+  -webkit-margin-after: 0px;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 0px;
+  margin-bottom: 0;
 }
 
-.sidebar-nav li {
-    text-indent: 20px;
+.main-nav li.main-search {
+  border: none;
+  box-shadow: none;
+}
+.main-nav li.main-search .search-input.form-control {
+  border-radius: 0;
+  background: #444;
+  border: none;
+  color: #fff;
+  font-size: 12px;
+  font-weight: normal;
+}
+.main-nav li.main-search i {
+  float: right;
+  margin-top: -25px;
+  margin-right: 15px;
+  color: #999;
+}
+.main-nav li.nav-brand {
+  height: 80px;
+  line-height: 80px;
+  font-size: 18px;
+  border: none;
+  box-shadow: none;
+}
+.main-nav li a {
+  color: #fff;
+  display: block;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+
+
+@media (max-width: 768px) {
+  #wrapper {
+    padding-left: 0;
+  }
+  #wrapper.toggled {
+    padding-left: 250px;
+  }
+  #wrapper.toggled #sideBar {
+    left: 0;
+    opacity: 1;
+  }
+
+  #sideBar {
+    left: -300px;
+  }
+}
+
+.main-nav li {
     line-height: 40px;
+    padding: 0 15px;
+    box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.12);
 }
-
-.sidebar-nav li a {
-    display: block;
-    text-decoration: none;
-    color: #999999;
-}
-
-.sidebar-nav li a:hover {
-    text-decoration: none;
-    color: #fff;
-    background: rgba(255,255,255,0.2);
-}
-
-.sidebar-nav li a:active,
-.sidebar-nav li a:focus {
-    text-decoration: none;
-}
-
-.sidebar-nav > .sidebar-brand {
-    font-size: 18px;
-    line-height: 60px;
-}
-
-.sidebar-nav > .sidebar-brand a {
-    color: #999999;
-}
-
-.sidebar-nav > .sidebar-brand a:hover {
-    color: #fff;
-    background: none;
-}
-

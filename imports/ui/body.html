@@ -1,60 +1,51 @@
 <template name="editor">
-<div>
-</div>
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Editor</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="{{pathFor route='instructor'}}" target="_blank">Instructor view</a></li>
-      <li><a class="save" data-projectId="" >Guardar</a></li> 
-      <li><a class="view">Vista previa</a></li> 
+<nav class="navbar navbar-default" role="navigation">
+  <!-- El logotipo y el icono que despliega el menú se agrupan
+       para mostrarlos mejor en los dispositivos móviles -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse"
+            data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Desplegar navegación</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#"> <span class="glyphicon glyphicon-edit"></span> Editor</a>
+    <a class="navbar-brand"><span class="glyphicon glyphicon-folder-open"  id="valores"></span></a>
+
+        </div>
+  <!-- Agrupar los enlaces de navegación, los formularios y cualquier
+       otro elemento que se pueda ocultar al minimizar la barra -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse"> 
+    <ul class="nav navbar-nav navbar-right">
+      <li><a class="save">  <span class="glyphicon glyphicon-floppy-disk"></span> Guardar</a></li>
+        <li><a class="view"><span class="glyphicon glyphicon-eye-open"></span> Vista previa</a></li>
+        <li><a href="{{pathFor route='instructor'}}" target="_blak"><span class="glyphicon glyphicon-user"></span> Vista Intructor</a></li>
+         <li><a id="menuToggler"><span class="glyphicon glyphicon-file"></span> Archivos</a></li>
     </ul>
   </div>
-</nav>
-
-
- <div id="wrapper">
-
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="#">
-              <li>
-                    <a href="#">Practica 15</a>
+</nav> 
+  <div id="wrapper">
+        <aside id="sideBar">
+            <ul class="main-nav">
+                <li>
+                   <a href="#">Practica 15</a>
                        {{#each projects}}
-     					{{> folders}}
-   						 {{/each}}
-
-                </li>
-                    </a>
+              {{> folders}}
+               {{/each}}
                 </li>
             </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
+        </aside>
 
-        <!-- Page Content -->
-        <!-- /#page-content-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
-  
+          <section class="main-section">
+            <!-- Add Your Content Inside -->
+            <div class="content">
  {{>codemirror}}
-    <!-- Bootstrap Core JavaScript -->
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Menu Toggle Script -->
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
-
-  <button class="save" data-projectId="">Save</button>
-  <button class="view"  >Vista previa </button>
+            </div>
+            <!-- /.content -->
+        </section>
+        <!-- /.main-section -->
+    </div>
 </template>
