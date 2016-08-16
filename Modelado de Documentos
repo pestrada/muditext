@@ -1,0 +1,171 @@
+{
+    "_id" : ObjectId("5745fab6997f98a92230d378"),
+    "folder" : "projectname",
+    "files" : [ 
+        {
+            "name" : "index",
+            "extension" : "html",
+            "lines" : [ 
+                {
+                    "text" : "<html>"
+                }, 
+                {
+                    "text" : "<head>"
+                }, 
+                {
+                    "text" : "<title></title>"
+                }, 
+                {
+                    "text" : "<link rel=\"stylesheet\" type=\"text/css\" hrfe= \"css/estilo.css\">"
+                }, 
+                {
+                    "text" : "</head>"
+                }, 
+                {
+                    "text" : "<body>"
+                }, 
+                {
+                    "text" : "<div id=\"contenedor\">"
+                }, 
+                {
+                    "text" : "<input id=\"inputMensaje\" type=\"text\" placeholder=\"Escribir Mensaje\"/>"
+                }, 
+                {
+                    "text" : "<button id=\"btnGuardar\">Guardar </button>"
+                }, 
+                {
+                    "text" : "<button id=\"btnLeerdatos\">Leer Datos </button>"
+                }, 
+                {
+                    "text" : "</div>"
+                }, 
+                {
+                    "text" : "<script type=\"text/javascript\" src=\"js/script.js\"></script>"
+                }, 
+                {
+                    "text" : "</body>"
+                }, 
+                {
+                    "text" : "</html>"
+                }, 
+                {
+                    "text" : ""
+                }
+            ]
+        }, 
+        {
+            "folder" : "css",
+            "name" : "estilo",
+            "extension" : "css",
+            "lines" : [ 
+                {
+                    "text" : "#contenedor{"
+                }, 
+                {
+                    "text" : "background: #58D3F7;"
+                }, 
+                {
+                    "text" : "color:#fff;"
+                }, 
+                {
+                    "text" : "font-size: 30px;"
+                }, 
+                {
+                    "text" : "}"
+                }, 
+                {
+                    "text" : ""
+                }
+            ]
+        }, 
+        {
+            "folder" : "js",
+            "name" : "script",
+            "extension" : "js",
+            "lines" : [ 
+                {
+                    "text" : "var loaded = function(){"
+                }, 
+                {
+                    "text" : "var enviarPeticion = function () {"
+                }, 
+                {
+                    "text" : "var peticion = new XMLHttpRequest();"
+                }, 
+                {
+                    "text" : "peticion.open(\"GET\", \"http://localhost/practica09/leer-posts.php\");"
+                }, 
+                {
+                    "text" : "peticion.onreadystatechange = function (){"
+                }, 
+                {
+                    "text" : "if(peticion.readyState == 4 ){"
+                }, 
+                {
+                    "text" : "//aqui cargamos el JSON"
+                }, 
+                {
+                    "text" : "cargarDatosjSon(peticion.response);"
+                }, 
+                {
+                    "text" : "}"
+                }, 
+                {
+                    "text" : " if (peticion.status ==404){"
+                }, 
+                {
+                    "text" : "alert(\"pagina no encontrada!!!\");"
+                }, 
+                {
+                    "text" : " }"
+                }, 
+                {
+                    "text" : "};"
+                }, 
+                {
+                    "text" : "peticion.send();"
+                }, 
+                {
+                    "text" : "}"
+                }, 
+                {
+                    "text" : ""
+                }
+            ]
+        }, 
+        {
+            "folder" : "foldername",
+            "name" : "leer-post",
+            "extension" : "php",
+            "lines" : [ 
+                {
+                    "text" : "<?php "
+                }, 
+                {
+                    "text" : "$con = new mysqli(\"localhost\", \"root\", \"\", \"\");"
+                }, 
+                {
+                    "text" : "if (!$con) die(\"error de conexion: \". mysql_connect_error());"
+                }, 
+                {
+                    "text" : "$sql = \"select * from posts;\";"
+                }, 
+                {
+                    "text" : "$result = $con -> query ($sql);"
+                }, 
+                {
+                    "text" : "$json [\"posts\"] = $result->fetch_all(MYSQLI_ASSOC);"
+                }, 
+                {
+                    "text" : "echo json_encode($json, JSON_PRETTY_PRINT);"
+                }, 
+                {
+                    "text" : "?>"
+                }, 
+                {
+                    "text" : ""
+                }
+            ]
+        }
+    ]
+}
