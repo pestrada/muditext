@@ -14,33 +14,43 @@ Template.previewview.helpers({
     },
 });
 
-  var readLines = function (docs){
+var readLines = function (docs, extension){
   var lines = docs.fetch()[0].files[0].lines;
   var result="";
   for (var i=0; i<lines.length; i++) {
-   result = result+lines[i].text+"\n";
-  document.getElementById("prevew").innerHTML=result;
+    if (result) result += "\n";
+    result = result+lines[i].text;
   }
+  document.getElementById("preview").innerHTML=result;
   return result;
 }
 
-
-
-  //styleTag = $('<style></style>').appendTo(contents.find('head'));
-
-
- var readLinescss = function (docs){
+var readLinesCSS = function (docs){
   var lines = docs.fetch()[0].files[1].lines;
   var result="";
   for (var i=0; i<lines.length; i++) {
-   result = result+lines[i].text+"\n";
-   document.getElementById("prevew").attr=result;
+    if (result) result += "\n";
+    result = result+lines[i].text;
   }
+  var css = document.createElement("style");
+  css.innerHTML = result;
+  document.head.appendChild(css);
   return result;
 }
 
+var readLinesJS = function (docs){
+  var lines = docs.fetch()[0].files[2].lines;
+  var result = "";
+  for (var i=0; i<lines.length; i++) {
+    if (result) result += "\n";
+    result = result+lines[i].text;
+  }
+  var js = document.createElement("script");
+  js.innerHTML = result;
+  document.head.appendChild(js);
+  return result;
+}
 
-    
 var searchs = function (docs,filename){
   var files = docs.files;
   var result="";
@@ -60,7 +70,6 @@ var searchs = function (docs,filename){
 }
 
 
-
 Template.previewview.onRendered( function() {
   this.autorun(() => {
      var subscriptions = Meteor.subscribe('projects');
@@ -68,6 +77,8 @@ Template.previewview.onRendered( function() {
      var docs = Projects.find({});
      if (isReady && docs) {
       var lines = readLines(docs);
+      readLinesCSS(docs);
+      readLinesJS(docs);
      }
   });
 });

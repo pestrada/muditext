@@ -1,5 +1,4 @@
 {
-    "_id" : ObjectId("5745fab6997f98a92230d378"),
     "folder" : "projectname",
     "files" : [ 
         {
@@ -28,16 +27,22 @@
                     "text" : "<div id=\"contenedor\">"
                 }, 
                 {
-                    "text" : "<input id=\"inputMensaje\" type=\"text\" placeholder=\"Escribir Mensaje\"/>"
+                    "text" : "  <input id=\"inputMensaje\" type=\"text\" placeholder=\"Escribir Mensaje\"/>"
                 }, 
                 {
-                    "text" : "<button id=\"btnGuardar\">Guardar </button>"
+                    "text" : "  <button id=\"btnGuardar\">Guardar </button>"
                 }, 
                 {
-                    "text" : "<button id=\"btnLeerdatos\">Leer Datos </button>"
+                    "text" : "  <button id=\"btnLeerdatos\">Leer Datos </button>"
+                }, 
+                {
+                    "text" : "  <p>yeii</p>"
                 }, 
                 {
                     "text" : "</div>"
+                }, 
+                {
+                    "text" : "<p>yayaya</p>"
                 }, 
                 {
                     "text" : "<script type=\"text/javascript\" src=\"js/script.js\"></script>"
@@ -47,9 +52,6 @@
                 }, 
                 {
                     "text" : "</html>"
-                }, 
-                {
-                    "text" : ""
                 }
             ]
         }, 
@@ -71,10 +73,10 @@
                     "text" : "font-size: 30px;"
                 }, 
                 {
-                    "text" : "}"
+                    "text" : "  height: 500px;"
                 }, 
                 {
-                    "text" : ""
+                    "text" : "}"
                 }
             ]
         }, 
@@ -87,49 +89,61 @@
                     "text" : "var loaded = function(){"
                 }, 
                 {
-                    "text" : "var enviarPeticion = function () {"
+                    "text" : "  var enviarPeticion = function () {"
                 }, 
                 {
-                    "text" : "var peticion = new XMLHttpRequest();"
+                    "text" : "    var peticion = new XMLHttpRequest();"
                 }, 
                 {
-                    "text" : "peticion.open(\"GET\", \"http://localhost/practica09/leer-posts.php\");"
+                    "text" : "    peticion.open(\"GET\", \"http://localhost/practica09/leer-posts.php\");"
                 }, 
                 {
-                    "text" : "peticion.onreadystatechange = function (){"
+                    "text" : "    peticion.onreadystatechange = function (){"
                 }, 
                 {
-                    "text" : "if(peticion.readyState == 4 ){"
+                    "text" : "      if(peticion.readyState == 4 ){"
                 }, 
                 {
-                    "text" : "//aqui cargamos el JSON"
+                    "text" : "        //aqui cargamos el JSON"
                 }, 
                 {
-                    "text" : "cargarDatosjSon(peticion.response);"
+                    "text" : "        cargarDatosjSon(peticion.response);"
                 }, 
                 {
-                    "text" : "}"
+                    "text" : "      }"
                 }, 
                 {
-                    "text" : " if (peticion.status ==404){"
+                    "text" : "      if (peticion.status ==404){"
                 }, 
                 {
-                    "text" : "alert(\"pagina no encontrada!!!\");"
+                    "text" : "        alert(\"pagina no encontrada!!!\");"
                 }, 
                 {
-                    "text" : " }"
+                    "text" : "      }"
+                }, 
+                {
+                    "text" : "    }"
+                }, 
+                {
+                    "text" : "  };"
                 }, 
                 {
                     "text" : "};"
                 }, 
                 {
-                    "text" : "peticion.send();"
+                    "text" : ""
+                }, 
+                {
+                    "text" : "var btnGuardar = document.getElementById(\"btnGuardar\");"
+                }, 
+                {
+                    "text" : "btnGuardar.onclick = function() {"
+                }, 
+                {
+                    "text" : "  alert(\"esto es un click\");"
                 }, 
                 {
                     "text" : "}"
-                }, 
-                {
-                    "text" : ""
                 }
             ]
         }, 

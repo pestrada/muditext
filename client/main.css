@@ -1,9 +1,5 @@
 /* CSS declarations go here */
-body {
-   background:#222D32;
-   text-align: center;
-}
-
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
 
 h1{
   color: white;
@@ -14,59 +10,46 @@ a{
 	color: white;
 }
 
-#contenedor{
-  background: white;
-}
-
-/*ditor-preview{
-    width: 80%;
-    float: right;
-}*/
-
 .records{
-    border: 3px
-    color: black;
+  border: 3px
+  color: black;
 }
 
 .CodeMirror { 
-    position: absolute;
-    text-align: left; 
-    min-height:100%;
-    min-width: 100%;
-    font-size: 110%;
-    border: 3px solid#272822;
+  position: absolute;
+  text-align: left; 
+  min-height:100%;
+  min-width: 100%;
+  font-size: 110%;
+  border: 3px solid#272822;
 }
 
 #files{
-    opacity: 1.0;
-    margin-bottom: 100%;
-    position: absolute;
-    left: 0%;
-    min-height: 30%;
-    min-width: 20%;
-    border: 3px solid#4CAF50;
-    padding: 10px;
+  opacity: 1.0;
+  margin-bottom: 100%;
+  position: absolute;
+  left: 0%;
+  min-height: 30%;
+  min-width: 20%;
+  border: 3px solid#4CAF50;
+  padding: 10px;
 }
 
 .navbar-default {
-    background-color:#3C8DBC;
-    border-color: black;
-
+  background-color:#3C8DBC;
+  border-color: black;
 }
 
 .navbar-default .navbar-nav > li > a {
-    color: #FFFFFF;
+  color: #FFFFFF;
 }
 .navbar-default .navbar-brand {
   color: #FFFFFF;
 }
 
 .navbar {
-     margin-bottom: 0px;
-
+  margin-bottom: 0px;
 }
-
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
 
 #wrapper {
   padding-left: 250px;
@@ -78,6 +61,7 @@ a{
 #wrapper.toggled {
   padding-left: 0;
 }
+
 #wrapper.toggled #sideBar {
   left: -300px;
   opacity: 0;
@@ -88,7 +72,7 @@ a{
 
 #sideBar {
   width: 265px;
-  position: fixed;
+  position: absolute;
   opacity: .99;
   left: 0;
   color: white;
@@ -142,8 +126,6 @@ a{
   text-decoration: none;
 }
 
-
-
 @media (max-width: 768px) {
   #wrapper {
     padding-left: 0;
@@ -162,7 +144,7 @@ a{
 }
 
 .main-nav li {
-    line-height: 40px;
-    padding: 0 15px;
-    box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.12);
+  line-height: 40px;
+  padding: 0 15px;
+  box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.12);
 }
