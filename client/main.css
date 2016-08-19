@@ -51,6 +51,10 @@ a{
   margin-bottom: 0px;
 }
 
+.navbar-toggle {
+  background-color: white;
+}
+
 #wrapper {
   padding-left: 250px;
   -webkit-transition: all .25s ease-in-out;
