@@ -104,6 +104,7 @@ Template.editor.onRendered( function() {
      var docs = Projects.find({});
      if (isReady && docs) {
       $(".save").attr("data-projectId",docs.fetch()[0]._id);
+      document.getElementById('valores').innerHTML ="index.html";
      }
   });
 });

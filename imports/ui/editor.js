@@ -26,7 +26,7 @@ export const Editor = {
     var extension=filename.split(".")[1];
     if(extension=="html"){
        var editor = $('.CodeMirror')[0].CodeMirror;
-       editor.setOption("mode","text/html");    
+       editor.setOption("mode","text/html");
     }else if(extension=="css"){
        var editor = $('.CodeMirror')[0].CodeMirror;
        editor.setOption("mode","text/css");    

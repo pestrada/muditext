@@ -49,12 +49,13 @@ Template.instructor.onRendered( function() {
   });
 
   this.autorun(() => {
-     var subscriptions = Meteor.subscribe('instructor');
-     const isReady = subscriptions.ready();
-     var docs = Instructor.find({});
-     if (isReady && docs) {
+    var subscriptions = Meteor.subscribe('instructor');
+    const isReady = subscriptions.ready();
+    var docs = Instructor.find({});
+    if (isReady && docs) {
       var lines = Editor.readLines(docs);
       this.editor.setValue(lines);
-     }
+      document.getElementById('valores').innerHTML ="index.html";
+    }
   });
 });
