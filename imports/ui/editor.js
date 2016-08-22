@@ -1,9 +1,12 @@
+import { Projects } from '../api/documents.js';
+
 export const Editor = {
   readLines: (docs) => {
     var lines = docs.fetch()[0].files[0].lines;
     var result="";
     for (var i=0; i<lines.length; i++) {
-     result = result+lines[i].text+"\n";
+      if (result) result += "\n";
+      result = result+lines[i].text;
     }
     return result;
   },
@@ -38,5 +41,31 @@ export const Editor = {
        editor.setOption("mode","text/x-php"); 
     }
     return result;
+  },
+  save: () => {
+    var editor = $('.CodeMirror')[0].CodeMirror;
+    var data = editor.getValue("\n"); 
+    var arrayData= data.split("\n");
+    var projectId = $(".save").attr("data-projectId"); 
+    var arrayMongo =[];
+
+    var result;
+    for (var i=0; i<arrayData.length; i++) {
+      result = { 
+        text: arrayData[i]
+      };
+      arrayMongo[i] = result;
+    }
+
+    var index= $("#editorcode").attr("data-currentFile");
+    if (index ==""){
+      alert("Seleccione un archivo");
+    } else {
+      var setModifier = { $set: {} };
+      setModifier.$set['files.'+index+'.lines'] = arrayMongo;
+
+      Projects.update(new Mongo.ObjectID(projectId), setModifier);
+      console.log("\"Guardado\"");
+    }
   }
 };

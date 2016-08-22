@@ -28,10 +28,10 @@ Template.editor.events({
     }
   },
   'click .save' (event){
-    save();
+    Editor.save();
   },
   'click .records' (event){
-    var numberIndex = $(event.target).attr("data-recorId");
+    var numberIndex = $(event.target).attr("data-recordId");
     var currentFile= $("#editorcode").attr("data-currentFile",numberIndex);
     var filename= event.target.innerText;
     document.getElementById('valores').innerHTML =""+filename;
@@ -51,33 +51,6 @@ Template.editor.events({
   }
 });
 
-var save = function (){
-  var editor = $('.CodeMirror')[0].CodeMirror;
-  var data = editor.getValue("\n"); 
-  var arrayData= data.split("\n");
-  var projectId = $(".save").attr("data-projectId"); 
-  var arrayMongo =[];
-
-  var result;
-  for (var i=0; i<arrayData.length; i++) {
-    result = { 
-      text: arrayData[i]
-    };
-    arrayMongo[i] = result;
-  }
-
-  var index= $("#editorcode").attr("data-currentFile");
-  if (index ==""){
-    alert("Seleccione un archivo");
-  } else {
-    var setModifier = { $set: {} };
-    setModifier.$set['files.'+index+'.lines'] = arrayMongo;
-
-    Projects.update(new Mongo.ObjectID(projectId), setModifier);
-    console.log("\"Guardado\"");
-  }
-}
-
 Template.editor.onRendered( function() {
   this.editor = CodeMirror.fromTextArea( this.find( "#editorcode" ), {
     lineNumbers: true,
@@ -93,7 +66,10 @@ Template.editor.onRendered( function() {
      const isReady = subscriptions.ready();
      var docs = Projects.find({});
      if (isReady && docs) {
+      var lines = Editor.readLines(docs);
+      this.editor.setValue(lines);
       $(".save").attr("data-projectId",docs.fetch()[0]._id);
+      $("#editorcode").attr("data-currentFile", 0);
       document.getElementById('valores').innerHTML ="index.html";
      }
   });
