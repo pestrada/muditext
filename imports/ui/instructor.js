@@ -27,10 +27,7 @@ Template.instructor.events({
         editor.setValue(text);   
       }
     });
-  }
-});
-
-Template.instructor.events({
+  },
   'click #menuToggler' (event){
     $('#wrapper').toggleClass('toggled');
   }
@@ -45,7 +42,6 @@ Template.instructor.onRendered( function() {
     mode:"text/html",
     lineWrapping: true,
     cursorHeight: 0.90
-
   });
 
   this.autorun(() => {

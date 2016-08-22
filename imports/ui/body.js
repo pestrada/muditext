@@ -12,61 +12,24 @@ Template.editor.onCreated(function bodyOnCreated() {
 Template.editor.helpers({
   projects() {
     return Projects.find({}).fetch();
-    },
+  },
 });
 
 Template.editor.events({
   'click .view' (event){
     var url ='http://localhost:3000/previewview';
     window.open(url, '_blank');
-   }
-});
-
-Template.editor.events({
+  },
   'click #menuToggler' (event){
     $('.collapse').collapse('toggle');
     var wrapper = $('#wrapper');
     if (!wrapper.hasClass('toggled')) {
       wrapper.toggleClass('toggled');
     }
-  }
-});
-
-var save = function (){
-  var editor = $('.CodeMirror')[0].CodeMirror;
-  var data = editor.getValue("\n"); 
-  var arrayData= data.split("\n");
-  var projectId = $(".save").attr("data-projectId"); 
-  var arrayMongo =[];
-
-  var result;
-  for (var i=0; i<arrayData.length; i++) {
-    result = { 
-      text: arrayData[i]
-    };
-    arrayMongo[i] = result;
-  }
-
-
-  var index= $("#editorcode").attr("data-currentFile");
-  if (index ==""){
-    alert("Seleccione un archivo");
-  } else {
-    var setModifier = { $set: {} };
-    setModifier.$set['files.'+index+'.lines'] = arrayMongo;
-
-    Projects.update(new Mongo.ObjectID(projectId), setModifier);
-    console.log("\"Guardado\"");
-  }
-}
-
-Template.editor.events({
+  },
   'click .save' (event){
     save();
-   }
-});
-
-Template.editor.events({
+  },
   'click .records' (event){
     var numberIndex = $(event.target).attr("data-recorId");
     var currentFile= $("#editorcode").attr("data-currentFile",numberIndex);
@@ -87,6 +50,33 @@ Template.editor.events({
     });
   }
 });
+
+var save = function (){
+  var editor = $('.CodeMirror')[0].CodeMirror;
+  var data = editor.getValue("\n"); 
+  var arrayData= data.split("\n");
+  var projectId = $(".save").attr("data-projectId"); 
+  var arrayMongo =[];
+
+  var result;
+  for (var i=0; i<arrayData.length; i++) {
+    result = { 
+      text: arrayData[i]
+    };
+    arrayMongo[i] = result;
+  }
+
+  var index= $("#editorcode").attr("data-currentFile");
+  if (index ==""){
+    alert("Seleccione un archivo");
+  } else {
+    var setModifier = { $set: {} };
+    setModifier.$set['files.'+index+'.lines'] = arrayMongo;
+
+    Projects.update(new Mongo.ObjectID(projectId), setModifier);
+    console.log("\"Guardado\"");
+  }
+}
 
 Template.editor.onRendered( function() {
   this.editor = CodeMirror.fromTextArea( this.find( "#editorcode" ), {
