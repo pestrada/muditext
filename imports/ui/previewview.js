@@ -7,7 +7,6 @@ import './previewview.html';
 Template.previewview.onCreated(function bodyOnCreated() {
 });
 
-
 Template.previewview.helpers({
   previewview() {
     return Projects.find({}).fetch();
@@ -51,35 +50,15 @@ var readLinesJS = function (docs){
   return result;
 }
 
-var searchs = function (docs,filename){
-  var files = docs.files;
-  var result="";
-  for (var i=0; i<files.length; i++) {  
-    var name= docs.files[i].name;
-    var extension= docs.files[i].extension;
-    var nameExtencion = name+"."+extension;
-    if (filename==nameExtencion) {
-     var lines = docs.files[i].lines;
-       for (var i=0; i<lines.length; i++) {
-        result = result+lines[i].text+"\n";
-      }
-
-    }
-  }
-  return result;
-}
-
-
 Template.previewview.onRendered( function() {
   this.autorun(() => {
-     var subscriptions = Meteor.subscribe('projects');
-     const isReady = subscriptions.ready();
-     var docs = Projects.find({});
-     if (isReady && docs) {
+    var subscriptions = Meteor.subscribe('projects');
+    const isReady = subscriptions.ready();
+    var docs = Projects.find({});
+    if (isReady && docs) {
       var lines = readLines(docs);
       readLinesCSS(docs);
       readLinesJS(docs);
-     }
+    }
   });
 });
-
