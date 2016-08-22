@@ -71,7 +71,7 @@ Template.editor.events({
     var numberIndex = $(event.target).attr("data-recorId");
     var currentFile= $("#editorcode").attr("data-currentFile",numberIndex);
     var filename= event.target.innerText;
-    var tu=document.getElementById('valores').innerHTML =" "+filename;
+    document.getElementById('valores').innerHTML =""+filename;
     Meteor.call('project.find',(err, res) => {
       if (err) {
         alert(err);

@@ -17,7 +17,7 @@ Template.instructor.helpers({
 Template.instructor.events({
   'click .records' (event){
     var filename= event.target.innerText;
-    var tu=document.getElementById('valores').innerHTML =" "+filename;
+    document.getElementById('valores').innerHTML =" "+filename;
     Meteor.call('instructor.find',(err, res) => {
       if (err) {
         alert(err);
@@ -29,7 +29,6 @@ Template.instructor.events({
     });
   }
 });
-
 
 Template.instructor.events({
   'click #menuToggler' (event){
