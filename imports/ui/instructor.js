@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Instructor } from '../api/documents.js';
 import './document.js'
+import { Editor } from './editor.js'
 import './instructor.html';
 
 
@@ -12,19 +13,8 @@ Template.instructor.helpers({
   instructor() {
     return Instructor.find({}).fetch();
     },
-
 });
-
-var readLines = function (docs){
-  var lines = docs.fetch()[0].files[0].lines;
-  var result="";
-  for (var i=0; i<lines.length; i++) {
-   result = result+lines[i].text+"\n";
-  }
-  return result;
-}
-
-    
+  
 var searchs = function (docs,filename){
   var files = docs.files;
   var result="";
@@ -101,7 +91,7 @@ Template.instructor.onRendered( function() {
      const isReady = subscriptions.ready();
      var docs = Instructor.find({});
      if (isReady && docs) {
-      var lines = readLines(docs);
+      var lines = Editor.readLines(docs);
       this.editor.setValue(lines);
      }
   });
