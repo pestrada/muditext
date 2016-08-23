@@ -20,12 +20,13 @@ Template.editor.events({
     var url ='http://localhost:3000/previewview';
     window.open(url, '_blank');
   },
+  'click #optionFiles' (event) {
+    $('#wrapper').toggleClass('toggled');
+    $('.collapse').toggleClass('in');
+  },
   'click #menuToggler' (event){
+    $('#wrapper').toggleClass('toggled');
     $('.collapse').collapse('toggle');
-    var wrapper = $('#wrapper');
-    if (!wrapper.hasClass('toggled')) {
-      wrapper.toggleClass('toggled');
-    }
   },
   'click .save' (event){
     Editor.save();

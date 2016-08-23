@@ -4,7 +4,7 @@
   <!-- El logotipo y el icono que despliega el menú se agrupan
        para mostrarlos mejor en los dispositivos móviles -->
   <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse"
+    <button id="menuToggler" class="navbar-toggle" data-toggle="collapse"
             data-target=".navbar-ex1-collapse">
       <span class="sr-only">Desplegar navegación</span>
       <span class="icon-bar"></span>
@@ -26,10 +26,30 @@
        otro elemento que se pueda ocultar al minimizar la barra -->
   <div class="collapse navbar-collapse navbar-ex1-collapse"> 
     <ul class="nav navbar-nav navbar-right">
-      <li><a class="save">  <span class="glyphicon glyphicon-floppy-disk"></span> Guardar</a></li>
-        <li><a class="view"><span class="glyphicon glyphicon-eye-open"></span> Vista previa</a></li>
-        <li><a href="{{pathFor route='instructor'}}" target="_blak"><span class="glyphicon glyphicon-user"></span> Vista Intructor</a></li>
-         <li><a id="menuToggler"><span class="glyphicon glyphicon-file"></span> Archivos</a></li>
+      <li>
+        <a class="save">
+          <span class="glyphicon glyphicon-floppy-disk"></span>
+          Guardar
+        </a>
+      </li>
+      <li>
+        <a class="view">
+          <span class="glyphicon glyphicon-eye-open"></span>
+          Vista previa
+        </a>
+      </li>
+      <li>
+        <a href="{{pathFor route='instructor'}}" target="_blak">
+          <span class="glyphicon glyphicon-user"></span>
+          Vista Intructor
+        </a>
+      </li>
+      <li>
+        <a id="optionFiles">
+          <span class="glyphicon glyphicon-file"></span>
+          Archivos
+        </a>
+      </li>
     </ul>
   </div>
 </nav> 
