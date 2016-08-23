@@ -49,12 +49,8 @@ export const Editor = {
     var projectId = $(".save").attr("data-projectId"); 
     var arrayMongo =[];
 
-    var result;
     for (var i=0; i<arrayData.length; i++) {
-      result = { 
-        text: arrayData[i]
-      };
-      arrayMongo[i] = result;
+      arrayMongo[i] = { text: arrayData[i] };
     }
 
     var index= $("#editorcode").attr("data-currentFile");
