@@ -54,24 +54,24 @@
   </div>
 </nav> 
   <div id="wrapper">
-        <aside id="sideBar">
-            <ul class="main-nav">
-                <li>
-                   <a href="#">Practica 15</a>
-              {{#each projects}}
-              {{> folders}}
-               {{/each}}
-                </li>
-            </ul>
-        </aside>
+    <aside id="sideBar">
+      <ul class="main-nav">
+        <li>
+          <a href="#">Practica 15</a>
+        </li>
+        {{#each projects}}
+          {{> folders}}
+        {{/each}}
+      </ul>
+    </aside>
 
-          <section class="main-section">
-            <!-- Add Your Content Inside -->
-            <div class="content">
- {{>codemirror}}
-            </div>
-            <!-- /.content -->
-        </section>
+    <section class="main-section">
+      <!-- Add Your Content Inside -->
+      <div class="content">
+        {{>codemirror}}
+      </div>
+      <!-- /.content -->
+  </section>
         <!-- /.main-section -->
     </div>
 </template>

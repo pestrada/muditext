@@ -8,11 +8,13 @@ h1{
 a{
 	font-size: 20px;
 	color: white;
+  cursor: pointer;
 }
 
 .records{
-  border: 3px
-  color: black;
+  border: 3px;
+  cursor: pointer;
+  margin: 0px;
 }
 
 .CodeMirror { 
@@ -96,6 +98,10 @@ a{
   -webkit-margin-end: 0px;
   -webkit-padding-start: 0px;
   margin-bottom: 0;
+}
+
+.main-nav li:hover {
+  background-color: #999;
 }
 
 .main-nav li.main-search {

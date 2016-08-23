@@ -9,32 +9,28 @@
 </template>
 
 <template name="folders">
-   {{#each files}}
+  {{#each files}}
+    <li>
       <p class="records" data-recordId={{@index}}>
-       {{> file}}
-     </p>
-    {{/each}}
+        {{> file}}
+      </p>
+    </li>
+  {{/each}}
     
 </template>
 
 
 <template name="line">
   {{text}}
-  </template>
+</template>
 
 <template name="file">
   {{name}}.{{extension}}
-  </template>
-
-
-  <template name="codemirror">
-    <div class="editor-preview">
-      <textarea id="editorcode" data-currentFile=""></textarea>
-    </div>
-
-
-
-    
 </template>
 
 
+<template name="codemirror">
+  <div class="editor-preview">
+    <textarea id="editorcode" data-currentFile=""></textarea>
+  </div>
+</template>
