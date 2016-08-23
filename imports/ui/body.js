@@ -16,10 +16,6 @@ Template.editor.helpers({
 });
 
 Template.editor.events({
-  'click .view' (event){
-    var url ='http://localhost:3000/previewview';
-    window.open(url, '_blank');
-  },
   'click #optionFiles' (event) {
     $('#wrapper').toggleClass('toggled');
     $('.collapse').toggleClass('in');
