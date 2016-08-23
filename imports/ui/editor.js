@@ -44,9 +44,9 @@ export const Editor = {
   },
   save: () => {
     var editor = $('.CodeMirror')[0].CodeMirror;
-    var data = editor.getValue("\n"); 
+    var data = editor.getValue("\n");
     var arrayData= data.split("\n");
-    var projectId = $(".save").attr("data-projectId"); 
+    var projectId = $(".save").attr("data-projectId");
     var arrayMongo =[];
 
     for (var i=0; i<arrayData.length; i++) {
@@ -86,5 +86,19 @@ export const Editor = {
         }
       }
     });
+  },
+  create: (filename) => {
+    var filePart = filename.split(".");
+    if (filePart[0] && filePart[1]) {
+      var file = {
+        name: filePart[0],
+        extension: filePart[1],
+        lines: []
+      }
+      var projectId = $(".save").attr("data-projectId");
+      Projects.update(new Mongo.ObjectID(projectId), {$push: {files: file}});
+    } else {
+      alert("El nombre de archivo es incorrecto.");
+    }
   }
 };

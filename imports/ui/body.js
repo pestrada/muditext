@@ -16,6 +16,10 @@ Template.editor.helpers({
 });
 
 Template.editor.events({
+  'click #optionNew' (event) {
+    var filename = prompt("Nombre del archivo", "");
+    if (filename) Editor.create(filename);
+  },
   'click #optionFiles' (event) {
     $('#wrapper').toggleClass('toggled');
     $('.collapse').toggleClass('in');
