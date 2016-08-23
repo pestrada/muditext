@@ -27,7 +27,7 @@
   <div class="collapse navbar-collapse navbar-ex1-collapse"> 
     <ul class="nav navbar-nav navbar-right">
       <li>
-        <a class="save">
+        <a class="save" data-projectId="">
           <span class="glyphicon glyphicon-floppy-disk"></span>
           Guardar
         </a>
@@ -57,7 +57,7 @@
     <aside id="sideBar">
       <ul class="main-nav">
         <li>
-          <a href="#">Practica 15</a>
+          <a href="#" id="projectName">Practica 15</a>
         </li>
         {{#each projects}}
           {{> folders}}

@@ -66,6 +66,7 @@ Template.editor.onRendered( function() {
       var lines = Editor.readLines(docs);
       this.editor.setValue(lines);
       $(".save").attr("data-projectId",docs.fetch()[0]._id);
+      $("#projectName").text(docs.fetch()[0].folder);
       $("#editorcode").attr("data-currentFile", 0);
       document.getElementById('valores').innerHTML ="index.html";
      }
