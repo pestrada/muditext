@@ -20,7 +20,6 @@ Template.instructor.events({
     $('.collapse').toggleClass('in');
   },
   'click #menuToggler' (event){
-    $('#wrapper').toggleClass('toggled');
     $('.collapse').collapse('toggle');
   },
   'click .records' (event){

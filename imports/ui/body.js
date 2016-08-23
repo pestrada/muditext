@@ -21,7 +21,6 @@ Template.editor.events({
     $('.collapse').toggleClass('in');
   },
   'click #menuToggler' (event){
-    $('#wrapper').toggleClass('toggled');
     $('.collapse').collapse('toggle');
   },
   'click .save' (event){
@@ -39,6 +38,11 @@ Template.editor.events({
         var text = Editor.search(res, filename);
         var editor = $('.CodeMirror')[0].CodeMirror;
         editor.setValue(text);
+
+        if (Editor.isMobile()) {
+          $('#wrapper').toggleClass('toggled');
+        }
+
         var menu = $(".collapse");
         if (menu.hasClass('in')) {
           $(".collapse").collapse('toggle');

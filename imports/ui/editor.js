@@ -67,5 +67,8 @@ export const Editor = {
       Projects.update(new Mongo.ObjectID(projectId), setModifier);
       console.log("\"Guardado\"");
     }
+  },
+  isMobile: () => {
+    return window.innerWidth < 768;
   }
 };
