@@ -15,6 +15,14 @@ Template.instructor.helpers({
 });
 
 Template.instructor.events({
+  'click #optionFiles' (event) {
+    $('#wrapper').toggleClass('toggled');
+    $('.collapse').toggleClass('in');
+  },
+  'click #menuToggler' (event){
+    $('#wrapper').toggleClass('toggled');
+    $('.collapse').collapse('toggle');
+  },
   'click .records' (event){
     var filename= event.target.innerText;
     document.getElementById('valores').innerHTML =" "+filename;
@@ -24,12 +32,13 @@ Template.instructor.events({
       } else {
         var text = Editor.search(res, filename);
         var editor = $('.CodeMirror')[0].CodeMirror;
-        editor.setValue(text);   
+        editor.setValue(text);
+        var menu = $(".collapse");
+        if (menu.hasClass('in')) {
+          $(".collapse").collapse('toggle');
+        }
       }
     });
-  },
-  'click #menuToggler' (event){
-    $('#wrapper').toggleClass('toggled');
   }
 });
 
