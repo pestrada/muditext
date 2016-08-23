@@ -70,5 +70,25 @@ export const Editor = {
   },
   isMobile: () => {
     return window.innerWidth < 768;
+  },
+  find: (serverFind, filename) => {
+    Meteor.call(serverFind, (err, res) => {
+      if (err) {
+        alert(err);
+      } else {
+        var text = Editor.search(res, filename);
+        var editor = $('.CodeMirror')[0].CodeMirror;
+        editor.setValue(text);
+
+        if (Editor.isMobile()) {
+          $('#wrapper').toggleClass('toggled');
+        }
+        
+        var menu = $(".collapse");
+        if (menu.hasClass('in')) {
+          $(".collapse").collapse('toggle');
+        }
+      }
+    });
   }
 };
