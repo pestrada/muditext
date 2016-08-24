@@ -36,6 +36,17 @@ Template.editor.events({
     var filename= event.target.innerText;
     document.getElementById('valores').innerHTML =""+filename;
     Editor.find('project.find', filename);
+  },
+  'click .action-icon' (event) {
+    var action = $(event.target).attr("data-action");
+    if (action == "edit") {
+
+    } else if (action == 'remove') {
+      var remove = confirm("¿deseas eliminar el archivo?");
+      var filename = $(event.target).parent().parent()
+                      .children("[data-recordId]").text().trim();
+      if (remove) Editor.remove(filename);
+    }
   }
 });
 

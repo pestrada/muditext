@@ -96,5 +96,8 @@ export const Editor = {
     } else {
       alert("El nombre de archivo es incorrecto.");
     }
+  },
+  remove: (filename) => {
+    console.log("eliminar este archivo: " + filename);
   }
 };
