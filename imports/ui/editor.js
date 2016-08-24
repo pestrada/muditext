@@ -76,14 +76,10 @@ export const Editor = {
         var editor = $('.CodeMirror')[0].CodeMirror;
         editor.setValue(text);
 
-        if (Editor.isMobile()) {
-          $('#wrapper').toggleClass('toggled');
-        }
+        if (Editor.isMobile()) $('#wrapper').toggleClass('toggled');
         
         var menu = $(".collapse");
-        if (menu.hasClass('in')) {
-          $(".collapse").collapse('toggle');
-        }
+        if (menu.hasClass('in')) menu.collapse('toggle');
       }
     });
   },
