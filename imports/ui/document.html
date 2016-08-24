@@ -10,10 +10,14 @@
 
 <template name="folders">
   {{#each files}}
-    <li>
+    <li class="record-item">
       <p class="records" data-recordId={{@index}}>
         {{> file}}
       </p>
+      <div class="record-actions">
+        <span class="action-icon glyphicon glyphicon-pencil"></span>
+        <span class="action-icon glyphicon glyphicon-remove"></span>
+      </div>
     </li>
   {{/each}}
     

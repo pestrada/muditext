@@ -14,7 +14,26 @@ a{
 .records{
   border: 3px;
   cursor: pointer;
+  display: inline-block;
   margin: 0px;
+  width: 70%;
+}
+
+.record-item {
+  display: block;
+}
+
+.record-actions {
+  float: right;
+  width: 30%;
+}
+
+.action-icon {
+  cursor: pointer;
+  display: inline-block;
+  height: 25px;
+  text-align: center;
+  width: 45%;
 }
 
 .CodeMirror { 
