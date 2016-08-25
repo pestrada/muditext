@@ -12,17 +12,20 @@ Template.home.helpers({
 });
 
 Template.home.events({
+  'click #btnNew' (event) {
+    var projectName = prompt("Nombre del nuevo proyecto:");
+    if (projectName) Projects.insert({folder: projectName, files: [] });
+  },
   'click .action-icon' (event) {
     var action = $(event.target).attr("data-action");
     var projectId = $(event.target).parent().find("[data-projectId]").attr("data-projectId");
     if (action == "edit") {
       var newName = prompt("Nuevo nombre del proyecto:");
       if (newName) {
-        Projects.update(new Mongo.ObjectID(projectId), {$set: {folder: newName}});
+        Projects.update(projectId, {$set: {folder: newName}});
       }
     } else if (action == 'remove') {
       var remove = confirm("¿deseas eliminar el proyecto?");
-      var id = $(event.target).parent().find("[data-projectId]").attr("data-projectId");
       // remove by Id
     }
   }
