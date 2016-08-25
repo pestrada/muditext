@@ -43,7 +43,7 @@ Template.editor.events({
 
     } else if (action == 'remove') {
       var remove = confirm("¿deseas eliminar el archivo?");
-      var filename = $(event.target).parents("[data-recordId]").text().trim();
+      var filename = $(event.target).parent().parent().find("[data-recordId]").text().trim();
       if (remove) Editor.remove(filename);
     }
   }

@@ -98,6 +98,14 @@ export const Editor = {
     }
   },
   remove: (filename) => {
-    console.log("eliminar este archivo: " + filename);
+    var filePart = filename.split(".");
+    if (filePart[0] && filePart[1]) {
+      var file = {
+        name: filePart[0],
+        extension: filePart[1]
+      }
+      var projectId = $(".save").attr("data-projectId");
+      Projects.update(new Mongo.ObjectID(projectId), {$pull: {files: file}});
+    }
   }
 };
