@@ -39,11 +39,14 @@ Template.editor.events({
   },
   'click .action-icon' (event) {
     var action = $(event.target).attr("data-action");
+    var record = $(event.target).parent().parent().find("[data-recordId]");
+    var filename = record.text().trim();
     if (action == "edit") {
-
+      var index   = $(record[0]).attr("data-recordId");
+      var newName = prompt("Nuevo nombre del archivo:");
+      if (newName) Editor.updateFileName(index, newName);
     } else if (action == 'remove') {
       var remove = confirm("¿deseas eliminar el archivo?");
-      var filename = $(event.target).parent().parent().find("[data-recordId]").text().trim();
       if (remove) Editor.remove(filename);
     }
   }

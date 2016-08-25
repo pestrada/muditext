@@ -107,5 +107,18 @@ export const Editor = {
       var projectId = $(".save").attr("data-projectId");
       Projects.update(new Mongo.ObjectID(projectId), {$pull: {files: file}});
     }
+  },
+  updateFileName: (index, newName) => {
+    var filePart = newName.split(".");
+    if (filePart[0] && filePart[1]) {
+      var setModifier = { $set: {} };
+      setModifier.$set['files.'+index+'.name'] = filePart[0];
+      setModifier.$set['files.'+index+'.extension'] = filePart[1];
+      
+      var projectId = $(".save").attr("data-projectId");
+      Projects.update(new Mongo.ObjectID(projectId), setModifier);
+    } else {
+      alert("El nombre de archivo es incorrecto.");
+    }
   }
 };
