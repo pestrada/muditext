@@ -21,9 +21,7 @@ Template.home.events({
     var projectId = $(event.target).parent().find("[data-projectId]").attr("data-projectId");
     if (action == "edit") {
       var newName = prompt("Nuevo nombre del proyecto:");
-      if (newName) {
-        Projects.update(projectId, {$set: {folder: newName}});
-      }
+      if (newName) Projects.update(projectId, {$set: {folder: newName}});
     } else if (action == 'remove') {
       var remove = confirm("¿deseas eliminar el proyecto?");
       if (remove) Projects.remove(projectId);
