@@ -16,6 +16,10 @@ Template.home.events({
     var projectName = prompt("Nombre del nuevo proyecto:");
     if (projectName) Projects.insert({folder: projectName, files: [] });
   },
+  'click .project-name' (event) {
+    var projectId = $(event.target).attr("data-projectId");
+    window.open(window.location.href + "editor/" + projectId);
+  },
   'click .action-icon' (event) {
     var action = $(event.target).attr("data-action");
     var projectId = $(event.target).parent().find("[data-projectId]").attr("data-projectId");

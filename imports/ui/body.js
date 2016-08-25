@@ -69,7 +69,9 @@ Template.editor.onRendered( function() {
   this.autorun(() => {
      var subscriptions = Meteor.subscribe('projects');
      const isReady = subscriptions.ready();
-     var docs = Projects.find({});
+     var id = window.location.href.split("/")[4];
+     var docs = Projects.find({ _id: id });
+     console.log(docs);
      if (isReady && docs) {
       var lines = Editor.readLines(docs);
       this.editor.setValue(lines);

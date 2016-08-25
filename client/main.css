@@ -205,6 +205,10 @@ a{
   width: 60%;
 }
 
+.project-name {
+  cursor: pointer;
+}
+
 .title {
   text-align: center;
 }

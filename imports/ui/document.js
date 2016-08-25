@@ -12,6 +12,14 @@ Router.route('/home');
 
 Router.route('/editor');
 
+Router.route('/editor/:id', function () {
+  this.render('editor', {
+    data: function () {
+      return Projects.findOne({ _id: this.params._id});
+    }
+  });
+});
+
 Router.route('/instructor');
 
 Router.route('/previewview');
