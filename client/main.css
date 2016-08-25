@@ -30,10 +30,11 @@ a{
 
 .action-icon {
   cursor: pointer;
-  display: inline-block;
-  height: 25px;
+  display: table-cell;
+  height: 40px;
   text-align: center;
-  width: 45%;
+  vertical-align: middle;
+  width: 30px;
 }
 
 .CodeMirror { 
@@ -120,7 +121,7 @@ a{
 }
 
 .main-nav li:hover {
-  background-color: #999;
+  background-color: #555;
 }
 
 .main-nav li.main-search {
@@ -174,8 +175,8 @@ a{
 
 .main-nav li {
   line-height: 40px;
-  padding: 0 15px;
   box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.12);
+  padding: 0 5px 0 5px;
 }
 
 #valores {
