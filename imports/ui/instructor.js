@@ -3,6 +3,7 @@ import { Template } from 'meteor/templating';
 import { Instructor } from '../api/documents.js';
 import './document.js'
 import { Editor } from './editor.js'
+import './themes.js'
 import './instructor.html';
 
 Template.instructor.onCreated(function bodyOnCreated() {
