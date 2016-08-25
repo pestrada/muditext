@@ -182,3 +182,7 @@ a{
 #valores {
   margin-left: 5px;
 }
+
+.full-width {
+  width: 100%;
+}

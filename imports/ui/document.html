@@ -19,10 +19,18 @@
         <div class="action-icon glyphicon glyphicon-remove" data-action="remove" title="eliminar"></div>
       </div>
     </li>
-  {{/each}}
-    
+  {{/each}}    
 </template>
 
+<template name="foldersInstructor">
+  {{#each files}}
+    <li class="record-item">
+      <p class="records full-width" data-recordId={{@index}}>
+        {{> file}}
+      </p>
+    </li>
+  {{/each}}
+</template>
 
 <template name="line">
   {{text}}
