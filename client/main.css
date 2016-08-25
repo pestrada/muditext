@@ -186,3 +186,8 @@ a{
 .full-width {
   width: 100%;
 }
+
+#selectTheme {
+  height: 52px;
+  width: 100%;
+}

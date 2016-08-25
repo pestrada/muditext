@@ -3,6 +3,7 @@ import { Template } from 'meteor/templating';
 import { Projects } from '../api/documents.js';
 import './document.js'
 import { Editor } from './editor.js'
+import './themes.js'
 import './body.html';
 
 
@@ -54,12 +55,15 @@ Template.editor.events({
 
 Template.editor.onRendered( function() {
   this.editor = CodeMirror.fromTextArea( this.find( "#editorcode" ), {
-    lineNumbers: true,
+    cursorHeight: 0.90,
     fixedGutter: true,
-    theme:"monokai",
-    mode:"text/html",
+    lineNumbers: true,
     lineWrapping: true,
-    cursorHeight: 0.90
+    matchBrackets: true,
+    mode:"text/html",
+    selectionPointer: true,
+    styleActiveLine: true,
+    theme:"monokai"
   });
 
   this.autorun(() => {
