@@ -4,8 +4,8 @@ import { Projects } from '../api/documents.js';
 import { Instructor } from '../api/documents.js';
 import './document.html';
 
-Router.route('/', {
-  template: 'home'
+Router.route('/', function () {
+  this.render('home');
 });
 
 Router.route('/home');

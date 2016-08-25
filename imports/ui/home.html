@@ -10,9 +10,9 @@
       <tbody>
         {{#each projects}}
           <tr>
-            <td>{{ folder }}</td>
-            <td class="action-icon glyphicon glyphicon-pencil" title="editar"></td>
-            <td class="action-icon glyphicon glyphicon-remove" title="eliminar"></td>
+            <td data-projectId="{{ _id }}">{{ folder }}</td>
+            <td class="action-icon glyphicon glyphicon-pencil" data-action="edit" title="editar"></td>
+            <td class="action-icon glyphicon glyphicon-remove" data-action="remove" title="eliminar"></td>
           </tr>
         {{/each}}
       </tbody>
