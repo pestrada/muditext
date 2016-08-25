@@ -4,10 +4,13 @@ import { Projects } from '../api/documents.js';
 import { Instructor } from '../api/documents.js';
 import './document.html';
 
-Router.route('/',{
-	name:'home',
-	template: 'editor'
+Router.route('/', {
+  template: 'home'
 });
+
+Router.route('/home');
+
+Router.route('/editor');
 
 Router.route('/instructor');
 

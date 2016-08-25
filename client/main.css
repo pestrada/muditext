@@ -191,3 +191,20 @@ a{
   height: 52px;
   width: 100%;
 }
+
+#project-list {
+  background-color: #222D32;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+#projects-table {
+  background-color: white;
+  margin: 0 auto 0 auto;
+  width: 60%;
+}
+
+.title {
+  text-align: center;
+}
