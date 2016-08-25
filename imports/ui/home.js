@@ -26,7 +26,7 @@ Template.home.events({
       }
     } else if (action == 'remove') {
       var remove = confirm("¿deseas eliminar el proyecto?");
-      // remove by Id
+      if (remove) Projects.remove(projectId);
     }
   }
 });
