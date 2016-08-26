@@ -1,5 +1,7 @@
 {
-    "folder" : "projectname",
+    "_id" : "y8faXdeaWhMJRAx7W",
+    "folder" : "practica10",
+    "owner" : "instructor",
     "files" : [ 
         {
             "name" : "index",
@@ -73,7 +75,7 @@
                     "text" : "font-size: 30px;"
                 }, 
                 {
-                    "text" : "  height: 500px;"
+                    "text" : "  height: 200px;"
                 }, 
                 {
                     "text" : "}"
