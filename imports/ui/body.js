@@ -67,18 +67,17 @@ Template.editor.onRendered( function() {
   });
 
   this.autorun(() => {
-     var subscriptions = Meteor.subscribe('projects');
-     const isReady = subscriptions.ready();
-     var id = window.location.href.split("/")[4];
-     var docs = Projects.find({ _id: id });
-     console.log(docs);
-     if (isReady && docs) {
+    var subscriptions = Meteor.subscribe('projects');
+    const isReady = subscriptions.ready();
+    var id = window.location.href.split("/")[4];
+    var docs = Projects.find({ _id: id });
+    if (isReady && docs) {
       var lines = Editor.readLines(docs);
       this.editor.setValue(lines);
       $(".save").attr("data-projectId",docs.fetch()[0]._id);
       $("#projectName").text(docs.fetch()[0].folder);
       $("#editorcode").attr("data-currentFile", 0);
       document.getElementById('valores').innerHTML ="index.html";
-     }
+    }
   });
 });

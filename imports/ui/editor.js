@@ -2,12 +2,16 @@ import { Projects } from '../api/documents.js';
 
 export const Editor = {
   readLines: (docs) => {
-    var lines = docs.fetch()[0].files[0].lines;
-    var result="";
-    for (var i=0; i<lines.length; i++) {
-      if (result) result += "\n";
-      result = result+lines[i].text;
+    var files = docs.fetch()[0].files;
+    var result = "";
+    if (files.length > 0) {
+      var lines = files[0].lines;
+      for (var i=0; i<lines.length; i++) {
+        if (result) result += "\n";
+        result = result+lines[i].text;
+      }
     }
+    
     return result;
   },
   search: (docs, filename) => {
@@ -60,7 +64,7 @@ export const Editor = {
       var setModifier = { $set: {} };
       setModifier.$set['files.'+index+'.lines'] = arrayMongo;
 
-      Projects.update(new Mongo.ObjectID(projectId), setModifier);
+      Projects.update(projectId, setModifier);
       console.log("\"Guardado\"");
     }
   },
@@ -92,7 +96,7 @@ export const Editor = {
         lines: []
       }
       var projectId = $(".save").attr("data-projectId");
-      Projects.update(new Mongo.ObjectID(projectId), {$push: {files: file}});
+      Projects.update(projectId, {$push: {files: file}});
     } else {
       alert("El nombre de archivo es incorrecto.");
     }
@@ -105,7 +109,7 @@ export const Editor = {
         extension: filePart[1]
       }
       var projectId = $(".save").attr("data-projectId");
-      Projects.update(new Mongo.ObjectID(projectId), {$pull: {files: file}});
+      Projects.update(projectId, {$pull: {files: file}});
     }
   },
   updateFileName: (index, newName) => {
@@ -116,7 +120,7 @@ export const Editor = {
       setModifier.$set['files.'+index+'.extension'] = filePart[1];
       
       var projectId = $(".save").attr("data-projectId");
-      Projects.update(new Mongo.ObjectID(projectId), setModifier);
+      Projects.update(projectId, setModifier);
     } else {
       alert("El nombre de archivo es incorrecto.");
     }
