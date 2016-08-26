@@ -25,6 +25,8 @@ Template.editor.onCreated(function bodyOnCreated() {
       $("#projectName").text(projectName);
       var urlInstructor = window.location.origin + "/instructor/" + projectName + "?myView=" + id;
       $("#optionInstructor").attr("href", urlInstructor);
+      var urlPreview = window.location.origin + "/previewview/" + id;
+      $("#optionPreview").attr("href", urlPreview);
     }
   });
 });

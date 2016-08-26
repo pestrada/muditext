@@ -26,4 +26,6 @@ Router.route('/instructor/:projectName', function () {
   });
 });
 
-Router.route('/previewview');
+Router.route('/previewview/:id', function () {
+  this.render('previewview');
+});

@@ -5,12 +5,21 @@ import './document.js'
 import './previewview.html';
 
 Template.previewview.onCreated(function bodyOnCreated() {
+  var id = window.location.pathname.split("/")[2];
+  this.autorun(() => {
+    var subscriptions = Meteor.subscribe('projectById', id);
+    const isReady = subscriptions.ready();
+    var docs = Projects.find({ _id: id });
+    if (isReady && docs) {
+      buildPreview(docs);
+    }
+  });
 });
 
 Template.previewview.helpers({
   previewview() {
     return Projects.find({}).fetch();
-  },
+  }
 });
 
 var readLines = function (lines) {
@@ -46,14 +55,3 @@ var buildPreview = function (docs){
     Injector[files[i].extension](result);
   }
 };
-
-Template.previewview.onRendered( function() {
-  this.autorun(() => {
-    var subscriptions = Meteor.subscribe('projects');
-    const isReady = subscriptions.ready();
-    var docs = Projects.find({});
-    if (isReady && docs) {
-      buildPreview(docs);
-    }
-  });
-});
