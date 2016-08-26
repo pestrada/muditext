@@ -51,6 +51,11 @@ Template.instructor.onRendered( function() {
       $('#valores').html("index.html");
       var projectName = docs.fetch()[0].folder;
       $("#projectName").text(projectName);
+
+      var optionMyView = $("#optionMyView");
+      var myId = window.location.search.substr(1).split("=")[1];
+      var urlMyView = optionMyView.attr("href") + "/" + myId;
+      $("#optionMyView").attr("href", urlMyView);
     }
   });
 });

@@ -81,7 +81,7 @@ Template.editor.onRendered( function() {
       $("#editorcode").attr("data-currentFile", 0);
       $("#valores").html("index.html");
       var optionInstructor = $("#optionInstructor");
-      var urlInstructor    = optionInstructor.attr("href") + "/" + projectName;
+      var urlInstructor = optionInstructor.attr("href") + "/" + projectName + "?myView=" + id;
       optionInstructor.attr("href", urlInstructor);
     }
   });
