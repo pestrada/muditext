@@ -4,9 +4,10 @@ export const Editor = {
   readLines: (docs) => {
     var files = docs.fetch()[0].files;
     var result = "";
+    var lines;
     if (files.length > 0) {
-      var lines = files[0].lines;
-      for (var i=0; i<lines.length; i++) {
+      lines = files[0].lines;
+      for (var i = 0; i < lines.length; i++) {
         if (result) result += "\n";
         result = result+lines[i].text;
       }
@@ -15,33 +16,30 @@ export const Editor = {
     return result;
   },
   search: (docs, filename) => {
-    var files = docs.files;
+    var files  = docs.files;
     var result = "";
-    for (var i=0; i<files.length; i++) {  
-      var name= docs.files[i].name;
-      var extension= docs.files[i].extension;
-      var nameExtencion = name+"."+extension;
-      if (filename==nameExtencion) {
-        var lines = docs.files[i].lines;
-        for (var j=0; j<lines.length; j++) {
+    var nameExtension, lines;
+    for (var i = 0; i < files.length; i++) {
+      nameExtension = files[i].name + "." + files[i].extension;
+      if (filename == nameExtension) {
+        lines = files[i].lines;
+        for (var j = 0; j < lines.length; j++) {
           if (result) result += "\n";
-          result = result+lines[j].text;
+          result = result + lines[j].text;
         }
+        break;
       }
     }
 
-    var extension=filename.split(".")[1];
-    if(extension=="html"){
-       var editor = $('.CodeMirror')[0].CodeMirror;
+    nameExtension = filename.split(".")[1];
+    var editor = $('.CodeMirror')[0].CodeMirror;
+    if (nameExtension == "html") {
        editor.setOption("mode","text/html");
-    }else if(extension=="css"){
-       var editor = $('.CodeMirror')[0].CodeMirror;
+    } else if(nameExtension == "css") {
        editor.setOption("mode","text/css");    
-    }else if(extension=="js"){
-       var editor = $('.CodeMirror')[0].CodeMirror;
+    } else if(nameExtension == "js") {
        editor.setOption("mode","text/javascript");  
-    }else if(extension=="php"){
-       var editor = $('.CodeMirror')[0].CodeMirror;
+    } else if(nameExtension == "php") {
        editor.setOption("mode","text/x-php"); 
     }
     return result;
