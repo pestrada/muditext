@@ -70,20 +70,16 @@ export const Editor = {
     return window.innerWidth < 768;
   },
   find: (serverFind, filename) => {
-    Meteor.call(serverFind, (err, res) => {
-      if (err) {
-        alert(err);
-      } else {
-        var text = Editor.search(res, filename);
-        var editor = $('.CodeMirror')[0].CodeMirror;
-        editor.setValue(text);
+    var projectId = $(".save").attr("data-projectId");
+    var doc = Projects.find({_id: projectId}).fetch()[0];
+    var text = Editor.search(doc, filename);
+    var editor = $('.CodeMirror')[0].CodeMirror;
+    editor.setValue(text);
 
-        if (Editor.isMobile()) $('#wrapper').toggleClass('toggled');
-        
-        var menu = $(".collapse");
-        if (menu.hasClass('in')) menu.collapse('toggle');
-      }
-    });
+    if (Editor.isMobile()) $('#wrapper').toggleClass('toggled');
+    
+    var menu = $(".collapse");
+    if (menu.hasClass('in')) menu.collapse('toggle');
   },
   create: (filename) => {
     var filePart = filename.split(".");

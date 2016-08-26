@@ -21,8 +21,8 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-	'project.find'(){
-    return Projects.find({}).fetch()[0];
+	'project.find'(id){
+    return Projects.find({_id: id});
 	},
   'instructor.find'(){
     return Instructor.find({}).fetch()[0];
