@@ -11,7 +11,7 @@ if (Meteor.isServer) {
     return Projects.find({});
   });
 
-  Meteor.publish('projectsById', function (id) {
+  Meteor.publish('projectById', function (id) {
     return Projects.find({_id: id});
   });
 

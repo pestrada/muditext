@@ -6,8 +6,27 @@ import { Editor } from './editor.js'
 import './themes.js'
 import './body.html';
 
-
 Template.editor.onCreated(function bodyOnCreated() {
+  var id = window.location.pathname.split("/")[2];
+  this.autorun(() => {
+    var subscriptions = this.subscribe('projectById', id);
+    const isReady = subscriptions.ready();
+    var docs = Projects.find({ _id: id });
+    if (isReady && docs) {
+      var lines = Editor.readLines(docs);
+      if (lines) {
+        this.editor.setValue(lines);
+        $("#valores").html(docs.fetch()[0].name + docs.fetch()[0].extension);
+        $("#editorcode").attr("data-currentFile", 0);
+      }
+
+      $(".save").attr("data-projectId",docs.fetch()[0]._id);
+      var projectName = docs.fetch()[0].folder;
+      $("#projectName").text(projectName);
+      var urlInstructor = window.location.origin + "/instructor/" + projectName + "?myView=" + id;
+      $("#optionInstructor").attr("href", urlInstructor);
+    }
+  });
 });
 
 Template.editor.helpers({
@@ -64,26 +83,5 @@ Template.editor.onRendered( function() {
     selectionPointer: true,
     styleActiveLine: true,
     theme:"monokai"
-  });
-
-  this.autorun(() => {
-    var id = window.location.pathname.split("/")[2];
-    var subscriptions = Meteor.subscribe('projects');
-    const isReady = subscriptions.ready();
-    var docs = Projects.find({ _id: id });
-    if (isReady && docs) {
-      var lines = Editor.readLines(docs);
-      if (lines) {
-        this.editor.setValue(lines);
-        $("#valores").html(docs.fetch()[0].name + docs.fetch()[0].extension);
-        $("#editorcode").attr("data-currentFile", 0);
-      }
-
-      $(".save").attr("data-projectId",docs.fetch()[0]._id);
-      var projectName = docs.fetch()[0].folder;
-      $("#projectName").text(projectName);
-      var urlInstructor = window.location.origin + "/instructor/" + projectName + "?myView=" + id;
-      $("#optionInstructor").attr("href", urlInstructor);
-    }
   });
 });
