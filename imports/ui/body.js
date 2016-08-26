@@ -67,7 +67,7 @@ Template.editor.onRendered( function() {
   });
 
   this.autorun(() => {
-    var id = window.location.href.split("/")[4];
+    var id = window.location.pathname.split("/")[2];
     var subscriptions = Meteor.subscribe('projects');
     const isReady = subscriptions.ready();
     var docs = Projects.find({ _id: id });
@@ -82,9 +82,8 @@ Template.editor.onRendered( function() {
       $(".save").attr("data-projectId",docs.fetch()[0]._id);
       var projectName = docs.fetch()[0].folder;
       $("#projectName").text(projectName);
-      var optionInstructor = $("#optionInstructor");
-      var urlInstructor = optionInstructor.attr("href") + "/" + projectName + "?myView=" + id;
-      optionInstructor.attr("href", urlInstructor);
+      var urlInstructor = window.location.origin + "/instructor/" + projectName + "?myView=" + id;
+      $("#optionInstructor").attr("href", urlInstructor);
     }
   });
 });

@@ -12,7 +12,7 @@ Template.instructor.onCreated(function bodyOnCreated() {
 Template.instructor.helpers({
   instructor() {
     return Instructor.find({}).fetch();
-  },
+  }
 });
 
 Template.instructor.events({
