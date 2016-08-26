@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Instructor } from '../api/documents.js';
-import './document.js'
+//import './document.js'
 import { Editor } from './editor.js'
 import './themes.js'
 import './instructor.html';
@@ -42,21 +42,26 @@ Template.instructor.onRendered( function() {
   });
 
   this.autorun(() => {
+    var projectName = window.location.pathname.split("/")[2];
     var subscriptions = Meteor.subscribe('instructor');
     const isReady = subscriptions.ready();
-    var projectName = window.location.pathname.split("/")[2];
     var docs = Instructor.find({folder: projectName});
     if (isReady && docs) {
-      var lines = Editor.readLines(docs);
-      this.editor.setValue(lines);
-      $('#valores').html("index.html");
-      var projectName = docs.fetch()[0].folder;
-      $("#projectName").text(projectName);
-
+      if (docs.fetch().length > 0) {
+        var lines = Editor.readLines(docs);
+        if (lines) {
+          this.editor.setValue(lines);
+          $("#valores").html(docs.fetch()[0].name + docs.fetch()[0].extension);
+          $("#projectName").text(docs.fetch()[0].folder);
+        }
+      } else {
+        $("#valores").html("Proyecto vacio.");
+      }
+      
       var optionMyView = $("#optionMyView");
       var myId = window.location.search.substr(1).split("=")[1];
       var urlMyView = optionMyView.attr("href") + "/" + myId;
-      $("#optionMyView").attr("href", urlMyView);
+      optionMyView.attr("href", urlMyView);
     }
   });
 });

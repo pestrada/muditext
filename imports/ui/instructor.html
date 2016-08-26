@@ -46,7 +46,7 @@
     <aside id="sideBar">
       <ul class="main-nav">
         <li>
-          <a href="#" id="projectName">Practica 15</a>
+          <a href="#" id="projectName"></a>
         </li>
         {{#each instructor}}
           {{> foldersInstructor }}
@@ -64,4 +64,14 @@
     <!-- /.main-section -->
   </div>
 
+</template>
+
+<template name="foldersInstructor">
+  {{#each files}}
+    <li class="record-item">
+      <p class="records full-width" data-recordId={{@index}}>
+        {{name}}.{{extension}}
+      </p>
+    </li>
+  {{/each}}
 </template>

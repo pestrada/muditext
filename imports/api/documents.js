@@ -15,8 +15,8 @@ if (Meteor.isServer) {
     return Projects.find({_id: id});
   });
 
-  Meteor.publish('instructor', function (projectName) {
-    return Instructor.find({folder: projectName});
+  Meteor.publish('instructor', function () {
+    return Instructor.find({});
   });
 }
 
