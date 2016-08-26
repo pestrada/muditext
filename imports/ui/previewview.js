@@ -10,45 +10,42 @@ Template.previewview.onCreated(function bodyOnCreated() {
 Template.previewview.helpers({
   previewview() {
     return Projects.find({}).fetch();
-    },
+  },
 });
 
-var readLines = function (docs, extension){
-  var lines = docs.fetch()[0].files[0].lines;
-  var result="";
-  for (var i=0; i<lines.length; i++) {
-    if (result) result += "\n";
-    result = result+lines[i].text;
-  }
-  document.getElementById("preview").innerHTML=result;
-  return result;
-}
-
-var readLinesCSS = function (docs){
-  var lines = docs.fetch()[0].files[1].lines;
-  var result="";
-  for (var i=0; i<lines.length; i++) {
-    if (result) result += "\n";
-    result = result+lines[i].text;
-  }
-  var css = document.createElement("style");
-  css.innerHTML = result;
-  document.head.appendChild(css);
-  return result;
-}
-
-var readLinesJS = function (docs){
-  var lines = docs.fetch()[0].files[2].lines;
+var readLines = function (lines) {
   var result = "";
-  for (var i=0; i<lines.length; i++) {
+  for (var i = 0; i < lines.length; i++) {
     if (result) result += "\n";
-    result = result+lines[i].text;
+    result = result + lines[i].text;
   }
-  var js = document.createElement("script");
-  js.innerHTML = result;
-  document.head.appendChild(js);
   return result;
-}
+};
+
+var Injector = {
+  html: (result) => {
+    document.getElementById("preview").innerHTML = result;
+  },
+  css: (result) => {
+    var css = document.createElement("style");
+    css.innerHTML = result;
+    document.head.appendChild(css);
+  },
+  js: (result) => {
+    var js = document.createElement("script");
+    js.innerHTML = result;
+    document.head.appendChild(js);
+  }
+};
+
+var buildPreview = function (docs){
+  var files = docs.fetch()[0].files;
+  var result = "";
+  for (var i = 0; i < files.length; i++) {
+    result = readLines(files[i].lines);
+    Injector[files[i].extension](result);
+  }
+};
 
 Template.previewview.onRendered( function() {
   this.autorun(() => {
@@ -56,9 +53,7 @@ Template.previewview.onRendered( function() {
     const isReady = subscriptions.ready();
     var docs = Projects.find({});
     if (isReady && docs) {
-      var lines = readLines(docs);
-      readLinesCSS(docs);
-      readLinesJS(docs);
+      buildPreview(docs);
     }
   });
 });
