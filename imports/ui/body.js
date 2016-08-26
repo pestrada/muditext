@@ -12,7 +12,7 @@ Template.editor.onCreated(function bodyOnCreated() {
 
 Template.editor.helpers({
   projects() {
-    return Projects.find({}).fetch();
+    return Projects.find({});
   }
 });
 

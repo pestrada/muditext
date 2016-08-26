@@ -3,11 +3,12 @@ import { Projects } from '../api/documents.js';
 import './home.html';
 
 Template.home.onCreated(function bodyOnCreated() {
+  Meteor.subscribe('projects');
 });
 
 Template.home.helpers({
   projects() {
-    return Projects.find({}).fetch();
+    return Projects.find({});
   }
 });
 
@@ -31,15 +32,4 @@ Template.home.events({
       if (remove) Projects.remove(projectId);
     }
   }
-});
-
-Template.home.onRendered( function() {
-  this.autorun(() => {
-    var subscriptions = Meteor.subscribe('projects');
-    const isReady = subscriptions.ready();
-    var docs = Projects.find({});
-    if (isReady && docs) {
-      // data has arrived
-    }
-  });
 });
