@@ -18,7 +18,7 @@ Template.home.events({
   },
   'click .project-name' (event) {
     var projectId = $(event.target).attr("data-projectId");
-    window.open(window.location.href + "editor/" + projectId);
+    window.open(window.location.origin + "/editor/" + projectId);
   },
   'click .action-icon' (event) {
     var action = $(event.target).attr("data-action");
