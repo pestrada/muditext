@@ -1,7 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Instructor } from '../api/documents.js';
-//import './document.js'
 import { Editor } from './editor.js'
 import './themes.js'
 import './instructor.html';
@@ -60,7 +59,7 @@ Template.instructor.onRendered( function() {
       
       var optionMyView = $("#optionMyView");
       var myId = window.location.search.substr(1).split("=")[1];
-      var urlMyView = optionMyView.attr("href") + "/" + myId;
+      var urlMyView = window.location.origin + "/editor/" + myId;
       optionMyView.attr("href", urlMyView);
     }
   });

@@ -10,8 +10,6 @@ Router.route('/', function () {
 
 Router.route('/home');
 
-Router.route('/editor');
-
 Router.route('/editor/:id', function () {
   this.render('editor', {
     data: function () {
@@ -19,8 +17,6 @@ Router.route('/editor/:id', function () {
     }
   });
 });
-
-Router.route('/instructor');
 
 Router.route('/instructor/:projectName', function () {
   this.render('instructor', {
