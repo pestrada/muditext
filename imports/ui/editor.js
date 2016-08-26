@@ -92,7 +92,7 @@ export const Editor = {
         name: filePart[0],
         extension: filePart[1],
         lines: []
-      }
+      };
       var projectId = $(".save").attr("data-projectId");
       Projects.update(projectId, {$push: {files: file}});
     } else {

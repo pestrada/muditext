@@ -11,6 +11,9 @@ Template.editor.onCreated(function bodyOnCreated() {
 });
 
 Template.editor.helpers({
+  projects() {
+    return Projects.find({}).fetch();
+  }
 });
 
 Template.editor.events({
@@ -72,11 +75,11 @@ Template.editor.onRendered( function() {
       var lines = Editor.readLines(docs);
       if (lines) {
         this.editor.setValue(lines);
-        $(".save").attr("data-projectId",docs.fetch()[0]._id);
         $("#valores").html(docs.fetch()[0].name + docs.fetch()[0].extension);
         $("#editorcode").attr("data-currentFile", 0);
       }
 
+      $(".save").attr("data-projectId",docs.fetch()[0]._id);
       var projectName = docs.fetch()[0].folder;
       $("#projectName").text(projectName);
       var optionInstructor = $("#optionInstructor");
