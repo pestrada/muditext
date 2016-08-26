@@ -22,4 +22,12 @@ Router.route('/editor/:id', function () {
 
 Router.route('/instructor');
 
+Router.route('/instructor/:projectName', function () {
+  this.render('instructor', {
+    data: function () {
+      return Instructor.findOne({ folder: this.params.projectName});
+    }
+  });
+});
+
 Router.route('/previewview');

@@ -48,7 +48,9 @@ Template.instructor.onRendered( function() {
     if (isReady && docs) {
       var lines = Editor.readLines(docs);
       this.editor.setValue(lines);
-      document.getElementById('valores').innerHTML ="index.html";
+      $('#valores').html("index.html");
+      var projectName = docs.fetch()[0].folder;
+      $("#projectName").text(projectName);
     }
   });
 });

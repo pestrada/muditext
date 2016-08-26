@@ -75,9 +75,14 @@ Template.editor.onRendered( function() {
       var lines = Editor.readLines(docs);
       this.editor.setValue(lines);
       $(".save").attr("data-projectId",docs.fetch()[0]._id);
-      $("#projectName").text(docs.fetch()[0].folder);
+
+      var projectName = docs.fetch()[0].folder;
+      $("#projectName").text(projectName);
       $("#editorcode").attr("data-currentFile", 0);
-      document.getElementById('valores').innerHTML ="index.html";
+      $("#valores").html("index.html");
+      var optionInstructor = $("#optionInstructor");
+      var urlInstructor    = optionInstructor.attr("href") + "/" + projectName;
+      optionInstructor.attr("href", urlInstructor);
     }
   });
 });
