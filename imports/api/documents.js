@@ -11,12 +11,12 @@ if (Meteor.isServer) {
     return Projects.find({});
   });
 
-  Meteor.publish('projectsById', function (projectId) {
-    return Projects.find({_id: projectId});
+  Meteor.publish('projectsById', function (id) {
+    return Projects.find({_id: id});
   });
 
-  Meteor.publish('instructor', function () {
-    return Instructor.find({});
+  Meteor.publish('instructor', function (projectName) {
+    return Instructor.find({folder: projectName});
   });
 }
 

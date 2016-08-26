@@ -11,9 +11,6 @@ Template.editor.onCreated(function bodyOnCreated() {
 });
 
 Template.editor.helpers({
-  projects() {
-    return Projects.find({}).fetch();
-  },
 });
 
 Template.editor.events({
@@ -67,19 +64,21 @@ Template.editor.onRendered( function() {
   });
 
   this.autorun(() => {
+    var id = window.location.href.split("/")[4];
     var subscriptions = Meteor.subscribe('projects');
     const isReady = subscriptions.ready();
-    var id = window.location.href.split("/")[4];
     var docs = Projects.find({ _id: id });
     if (isReady && docs) {
       var lines = Editor.readLines(docs);
-      this.editor.setValue(lines);
-      $(".save").attr("data-projectId",docs.fetch()[0]._id);
+      if (lines) {
+        this.editor.setValue(lines);
+        $(".save").attr("data-projectId",docs.fetch()[0]._id);
+        $("#valores").html(docs.fetch()[0].name + docs.fetch()[0].extension);
+        $("#editorcode").attr("data-currentFile", 0);
+      }
 
       var projectName = docs.fetch()[0].folder;
       $("#projectName").text(projectName);
-      $("#editorcode").attr("data-currentFile", 0);
-      $("#valores").html("index.html");
       var optionInstructor = $("#optionInstructor");
       var urlInstructor = optionInstructor.attr("href") + "/" + projectName + "?myView=" + id;
       optionInstructor.attr("href", urlInstructor);

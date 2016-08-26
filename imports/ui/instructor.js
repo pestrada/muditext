@@ -12,7 +12,7 @@ Template.instructor.onCreated(function bodyOnCreated() {
 Template.instructor.helpers({
   instructor() {
     return Instructor.find({}).fetch();
-    },
+  },
 });
 
 Template.instructor.events({
@@ -44,7 +44,8 @@ Template.instructor.onRendered( function() {
   this.autorun(() => {
     var subscriptions = Meteor.subscribe('instructor');
     const isReady = subscriptions.ready();
-    var docs = Instructor.find({});
+    var projectName = window.location.pathname.split("/")[2];
+    var docs = Instructor.find({folder: projectName});
     if (isReady && docs) {
       var lines = Editor.readLines(docs);
       this.editor.setValue(lines);
