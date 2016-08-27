@@ -16,7 +16,7 @@ Template.editor.onCreated(function bodyOnCreated() {
       var lines = Editor.readLines(docs);
       if (lines) {
         this.editor.setValue(lines);
-        $("#valores").html(docs.fetch()[0].name + docs.fetch()[0].extension);
+        $("#valores").html(docs.fetch()[0].files[0].name + "." + docs.fetch()[0].files[0].extension);
         $("#editorcode").attr("data-currentFile", 0);
       }
 
