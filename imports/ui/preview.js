@@ -2,9 +2,9 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Projects } from '../api/documents.js';
 import './document.js'
-import './previewview.html';
+import './preview.html';
 
-Template.previewview.onCreated(function bodyOnCreated() {
+Template.preview.onCreated(function bodyOnCreated() {
   var id = window.location.pathname.split("/")[2];
   this.autorun(() => {
     var subscriptions = Meteor.subscribe('projectById', id);
@@ -16,8 +16,8 @@ Template.previewview.onCreated(function bodyOnCreated() {
   });
 });
 
-Template.previewview.helpers({
-  previewview() {
+Template.preview.helpers({
+  preview() {
     return Projects.find({}).fetch();
   }
 });
