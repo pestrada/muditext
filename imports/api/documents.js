@@ -2,7 +2,6 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 
 export const Projects = new Mongo.Collection('projects');//projects 
-export const Instructor = new Mongo.Collection('instructor');//instructor 
 
 if (Meteor.isServer) {
   // This code only runs on the server
@@ -15,8 +14,8 @@ if (Meteor.isServer) {
     return Projects.find({_id: id});
   });
 
-  Meteor.publish('instructor', function () {
-    return Instructor.find({});
+  Meteor.publish('instructorProject', function (folder) {
+    return Projects.find({folder: folder, owner: "instructor"});
   });
 }
 

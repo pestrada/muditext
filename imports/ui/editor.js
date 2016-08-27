@@ -70,7 +70,7 @@ export const Editor = {
     return window.innerWidth < 768;
   },
   find: (serverFind, filename) => {
-    var projectId = $(".save").attr("data-projectId");
+    var projectId = $(".save").attr("data-projectId") || $("#projectName").attr("data-projectId");
     var doc = Projects.find({_id: projectId}).fetch()[0];
     var text = Editor.search(doc, filename);
     var editor = $('.CodeMirror')[0].CodeMirror;
