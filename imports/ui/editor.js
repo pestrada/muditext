@@ -64,10 +64,14 @@ export const Editor = {
 
       Projects.update(projectId, setModifier);
       console.log("\"Guardado\"");
+      Editor.notification("Proyecto ha sido guardado...");
     }
 
     var menu = $(".collapse");
     if (menu.hasClass('in')) menu.collapse('toggle');
+  },
+  notification: (message) => {
+    $("#notification").text(message).fadeIn().delay(2000).fadeOut();
   },
   isMobile: () => {
     return window.innerWidth < 768;
@@ -97,6 +101,7 @@ export const Editor = {
 
       var menu = $(".collapse");
       if (menu.hasClass('in')) menu.collapse('toggle');
+      Editor.notification("Archivo creado: " + filename);
     } else {
       alert("El nombre de archivo es incorrecto.");
     }
@@ -110,6 +115,7 @@ export const Editor = {
       }
       var projectId = $(".save").attr("data-projectId");
       Projects.update(projectId, {$pull: {files: file}});
+      Editor.notification("Archivo '" + filename + "', ha sido eliminado.");
     }
   },
   updateFileName: (index, newName) => {
@@ -121,6 +127,7 @@ export const Editor = {
       
       var projectId = $(".save").attr("data-projectId");
       Projects.update(projectId, setModifier);
+      Editor.notification("Nombre de archivo guardado: " + newName);
     } else {
       alert("El nombre de archivo es incorrecto.");
     }

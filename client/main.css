@@ -218,3 +218,17 @@ a{
   margin: 0 auto 2% auto;
   width: 60%;
 }
+
+#notification {
+  background-color: #095;
+  bottom: 0;
+  color: white;
+  display: none;
+  height: 40px;
+  line-height: 40px;
+  position: absolute;
+  text-align: center;
+  vertical-align: middle;
+  width: 100%;
+  z-index: 100;
+}
