@@ -63,7 +63,6 @@ export const Editor = {
       setModifier.$set['files.'+index+'.lines'] = arrayMongo;
 
       Projects.update(projectId, setModifier);
-      console.log("\"Guardado\"");
       Editor.notification("Proyecto ha sido guardado...");
     }
 

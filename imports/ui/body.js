@@ -6,30 +6,7 @@ import { Editor } from './editor.js'
 import './themes.js'
 import './body.html';
 
-Template.editor.onCreated(function bodyOnCreated() {
-  var id = window.location.pathname.split("/")[2];
-  this.autorun(() => {
-    var subscriptions = this.subscribe('projectById', id);
-    const isReady = subscriptions.ready();
-    var docs = Projects.find({ _id: id });
-    if (isReady && docs) {
-      var lines = Editor.readLines(docs);
-      if (lines) {
-        this.editor.setValue(lines);
-        this.editor.setOption("mode","text/" + docs.fetch()[0].files[0].extension);
-        $("#valores").html(docs.fetch()[0].files[0].name + "." + docs.fetch()[0].files[0].extension);
-        $("#editorcode").attr("data-currentFile", 0);
-      }
-
-      $(".save").attr("data-projectId",docs.fetch()[0]._id);
-      var projectName = docs.fetch()[0].folder;
-      $("#projectName").text(projectName);
-      var urlInstructor = window.location.origin + "/instructor/" + projectName + "?myView=" + id;
-      $("#optionInstructor").attr("href", urlInstructor);
-      var urlPreview = window.location.origin + "/preview/" + id;
-      $("#optionPreview").attr("href", urlPreview);
-    }
-  });
+Template.editor.onCreated(function () {
 });
 
 Template.editor.helpers({
@@ -86,5 +63,29 @@ Template.editor.onRendered( function() {
     selectionPointer: true,
     styleActiveLine: true,
     theme:"monokai"
+  });
+
+  var id = window.location.pathname.split("/")[2];
+  this.autorun(() => {
+    var subscriptions = this.subscribe('projectById', id);
+    const isReady = subscriptions.ready();
+    var docs = Projects.find({ _id: id });
+    if (isReady && docs) {
+      var lines = Editor.readLines(docs);
+      if (lines) {
+        this.editor.setValue(lines);
+        this.editor.setOption("mode","text/" + docs.fetch()[0].files[0].extension);
+        $("#valores").html(docs.fetch()[0].files[0].name + "." + docs.fetch()[0].files[0].extension);
+        $("#editorcode").attr("data-currentFile", 0);
+      }
+
+      $(".save").attr("data-projectId",docs.fetch()[0]._id);
+      var projectName = docs.fetch()[0].folder;
+      $("#projectName").text(projectName);
+      var urlInstructor = window.location.origin + "/instructor/" + projectName + "?myView=" + id;
+      $("#optionInstructor").attr("href", urlInstructor);
+      var urlPreview = window.location.origin + "/preview/" + id;
+      $("#optionPreview").attr("href", urlPreview);
+    }
   });
 });
