@@ -65,6 +65,9 @@ export const Editor = {
       Projects.update(projectId, setModifier);
       console.log("\"Guardado\"");
     }
+
+    var menu = $(".collapse");
+    if (menu.hasClass('in')) menu.collapse('toggle');
   },
   isMobile: () => {
     return window.innerWidth < 768;
@@ -91,6 +94,9 @@ export const Editor = {
       };
       var projectId = $(".save").attr("data-projectId");
       Projects.update(projectId, {$push: {files: file}});
+
+      var menu = $(".collapse");
+      if (menu.hasClass('in')) menu.collapse('toggle');
     } else {
       alert("El nombre de archivo es incorrecto.");
     }
