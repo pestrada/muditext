@@ -15,7 +15,14 @@ Template.home.helpers({
 Template.home.events({
   'click #btnNew' (event) {
     var projectName = prompt("Nombre del nuevo proyecto:");
-    if (projectName) Projects.insert({folder: projectName, files: [], userId: Meteor.userId() });
+    if (projectName) {
+      Projects.insert({
+        folder: projectName,
+        owner: Meteor.user().username == "instructor" ? "instructor" : "student",
+        userId: Meteor.userId(),
+        files: []
+      });
+    }
   },
   'click .project-name' (event) {
     var projectId = $(event.target).attr("data-projectId");
