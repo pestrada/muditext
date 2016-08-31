@@ -30,12 +30,14 @@ Template.home.events({
   },
   'click .action-icon' (event) {
     var action = $(event.target).attr("data-action");
-    var projectId = $(event.target).parent().find("[data-projectId]").attr("data-projectId");
+    var project = $(event.target).parent().find("[data-projectId]");
+    var projectId = project.attr("data-projectId");
+    var projectName = project.text().trim();
     if (action == "edit") {
-      var newName = prompt("Nuevo nombre del proyecto:");
+      var newName = prompt("Nuevo nombre del proyecto:", projectName);
       if (newName) Projects.update(projectId, {$set: {folder: newName}});
     } else if (action == 'remove') {
-      var remove = confirm("¿deseas eliminar el proyecto?");
+      var remove = confirm("¿Eliminar el proyecto: " + projectName + "?");
       if (remove) Projects.remove(projectId);
     }
   }

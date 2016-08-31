@@ -66,10 +66,10 @@ Template.editor.events({
     var filename = record.text().trim();
     if (action == "edit") {
       var index   = $(record[0]).attr("data-recordId");
-      var newName = prompt("Nuevo nombre del archivo:");
+      var newName = prompt("Nuevo nombre del archivo:", filename);
       if (newName) Editor.updateFileName(index, newName);
     } else if (action == 'remove') {
-      var remove = confirm("¿deseas eliminar el archivo?");
+      var remove = confirm("¿Eliminar el archivo: " + filename + "?");
       if (remove) Editor.remove(filename);
     }
   }
