@@ -1,11 +1,7 @@
 /* CSS declarations go here */
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
 
-h1{
-  color: white;
-}
-
-a{
+.hlink{
 	font-size: 20px;
 	color: white;
   cursor: pointer;
@@ -210,12 +206,13 @@ a{
 }
 
 .title {
+  color: white;
   text-align: center;
 }
 
 #btnNew {
   display: block;
-  margin: 0 auto 2% auto;
+  margin: 2% auto 2% auto;
   width: 60%;
 }
 
@@ -231,4 +228,12 @@ a{
   vertical-align: middle;
   width: 100%;
   z-index: 100;
+}
+
+.login-link-text {
+  color: white;
+}
+
+.login-link-text:hover {
+  color: #5bc0de;
 }

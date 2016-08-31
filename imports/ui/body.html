@@ -12,11 +12,11 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="{{pathFor route='home'}}">
+    <a class="navbar-brand hlink" href="{{pathFor route='home'}}">
       <span class="glyphicon glyphicon-edit"></span>
       Inicio
     </a>
-    <a class="navbar-brand">
+    <a class="navbar-brand hlink">
       <span class="glyphicon glyphicon-folder-open"></span>
       <span id="valores"></span>
     </a>
@@ -27,31 +27,31 @@
   <div class="collapse navbar-collapse navbar-ex1-collapse"> 
     <ul class="nav navbar-nav navbar-right">
       <li>
-        <a class="save" data-projectId="">
+        <a class="save hlink" data-projectId="">
           <span class="glyphicon glyphicon-floppy-disk"></span>
           Guardar
         </a>
       </li>
       <li>
-        <a id="optionNew">
+        <a id="optionNew hlink">
           <span class="glyphicon glyphicon-plus"></span>
           Nuevo
         </a>
       </li>
       <li>
-        <a class="view" target="_blank" id="optionPreview">
+        <a class="view hlink" target="_blank" id="optionPreview">
           <span class="glyphicon glyphicon-eye-open"></span>
           Vista previa
         </a>
       </li>
       <li>
-        <a href="#" target="_blank" id="optionInstructor">
+        <a href="#" class="hlink" target="_blank" id="optionInstructor">
           <span class="glyphicon glyphicon-user"></span>
           Vista Instructor
         </a>
       </li>
       <li>
-        <a id="optionFiles">
+        <a id="optionFiles" class="hlink">
           <span class="glyphicon glyphicon-file"></span>
           Archivos
         </a>
@@ -66,7 +66,7 @@
     <aside id="sideBar">
       <ul class="main-nav">
         <li>
-          <a href="#" id="projectName"></a>
+          <a href="#" id="projectName" class="hlink"></a>
         </li>
         {{#each projects}}
           {{> folders}}
