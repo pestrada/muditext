@@ -22,3 +22,5 @@ perak:codemirror
 iron:router
 twbs:bootstrap
 shell-server
+accounts-ui
+accounts-password
