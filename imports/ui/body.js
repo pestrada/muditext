@@ -7,6 +7,7 @@ import './themes.js'
 import './body.html';
 
 Template.editor.onCreated(function () {
+  this.autoSave = null;
 });
 
 Template.editor.helpers({
@@ -48,6 +49,17 @@ Template.editor.events({
     } else if (action == 'remove') {
       var remove = confirm("¿Eliminar el archivo: " + filename + "?");
       if (remove) Editor.remove(filename);
+    }
+  },
+  'keydown .content' (event, instance) {
+    if (Meteor.user().username == "instructor") {
+      if (instance.autoSave) {
+        Meteor.clearTimeout(instance.autoSave);
+        instance.autoSave = null;
+      }
+      instance.autoSave = Meteor.setTimeout(() => {
+        Editor.save();
+      }, 1500);
     }
   }
 });
