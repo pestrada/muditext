@@ -23,9 +23,11 @@ Template.instructor.events({
     $('.collapse').collapse('toggle');
   },
   'click .records' (event){
-    var filename= event.target.innerText;
-    document.getElementById('valores').innerHTML =" "+filename;
-    Editor.find('instructor.find', filename);
+    var fileIndex = $(event.target).attr("data-recordId");
+    $("#editorcode").attr("data-currentFile", fileIndex);
+    var filename = event.target.innerText;
+    $("#valores").html(filename);
+    Editor.find(filename);
   }
 });
 
@@ -47,14 +49,19 @@ Template.instructor.onRendered( function() {
     var docs = Projects.find({folder: projectName});
     if (isReady && docs) {
       if (docs.fetch().length > 0) {
-        var lines = Editor.readLines(docs);
-        if (lines) {
-          this.editor.setValue(lines);
-          this.editor.setOption("mode","text/" + docs.fetch()[0].files[0].extension);
-          $("#valores").html(docs.fetch()[0].files[0].name + "." + docs.fetch()[0].files[0].extension);
-          $("#projectName").text(docs.fetch()[0].folder);
-          $("#projectName").attr("data-projectId",docs.fetch()[0]._id);
+        if (docs.fetch()[0].files) {
+          var fileIndex = $("#editorcode").attr("data-currentFile") || 0;
+          var lines = Editor.readLines(docs, fileIndex);
+          if (lines) {
+            var file = docs.fetch()[0].files[fileIndex];
+            this.editor.setValue(lines);
+            this.editor.setOption("mode","text/" + file.extension);
+            $("#valores").html(file.name + "." + file.extension);
+          }
         }
+
+        $("#projectName").text(docs.fetch()[0].folder);
+        $("#projectName").attr("data-projectId", docs.fetch()[0]._id);
       } else {
         $("#valores").html("Proyecto vacio.");
       }

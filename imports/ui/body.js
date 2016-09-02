@@ -31,11 +31,11 @@ Template.editor.events({
     Editor.save();
   },
   'click .records' (event){
-    var numberIndex = $(event.target).attr("data-recordId");
-    var currentFile= $("#editorcode").attr("data-currentFile",numberIndex);
-    var filename= event.target.innerText;
-    document.getElementById('valores').innerHTML =""+filename;
-    Editor.find('project.find', filename);
+    var fileIndex = $(event.target).attr("data-recordId");
+    $("#editorcode").attr("data-currentFile", fileIndex);
+    var filename = event.target.innerText;
+    $("#valores").html(filename);
+    Editor.find(filename);
   },
   'click .action-icon' (event) {
     var action = $(event.target).attr("data-action");
@@ -71,12 +71,16 @@ Template.editor.onRendered( function() {
     const isReady = subscriptions.ready();
     var docs = Projects.find({ _id: id });
     if (isReady && docs) {
-      var lines = Editor.readLines(docs);
-      if (lines) {
-        this.editor.setValue(lines);
-        this.editor.setOption("mode","text/" + docs.fetch()[0].files[0].extension);
-        $("#valores").html(docs.fetch()[0].files[0].name + "." + docs.fetch()[0].files[0].extension);
-        $("#editorcode").attr("data-currentFile", 0);
+      if (docs.fetch()[0].files) {
+        var fileIndex = $("#editorcode").attr("data-currentFile") || 0;
+        var lines = Editor.readLines(docs, fileIndex);
+        if (lines) {
+          var file = docs.fetch()[0].files[fileIndex];
+          this.editor.setValue(lines);
+          this.editor.setOption("mode","text/" + file.extension);
+          $("#valores").html(file.name + "." + file.extension);
+          $("#editorcode").attr("data-currentFile", fileIndex);
+        }
       }
 
       $(".save").attr("data-projectId",docs.fetch()[0]._id);

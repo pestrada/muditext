@@ -1,12 +1,12 @@
 import { Projects } from '../api/documents.js';
 
 export const Editor = {
-  readLines: (docs) => {
+  readLines: (docs, fileIndex) => {
     var files = docs.fetch()[0].files;
     var result = "";
     var lines;
     if (files.length > 0) {
-      lines = files[0].lines;
+      lines = files[fileIndex].lines;
       for (var i = 0; i < lines.length; i++) {
         if (result) result += "\n";
         result = result+lines[i].text;
@@ -75,12 +75,14 @@ export const Editor = {
   isMobile: () => {
     return window.innerWidth < 768;
   },
-  find: (serverFind, filename) => {
+  find: (filename) => {
     var projectId = $(".save").attr("data-projectId") || $("#projectName").attr("data-projectId");
     var doc = Projects.find({_id: projectId}).fetch()[0];
-    var text = Editor.search(doc, filename);
-    var editor = $('.CodeMirror')[0].CodeMirror;
-    editor.setValue(text);
+    if (doc.files) {
+      var text = Editor.search(doc, filename);
+      var editor = $('.CodeMirror')[0].CodeMirror;
+      editor.setValue(text);
+    }
 
     if (Editor.isMobile()) $('#wrapper').toggleClass('toggled');
     
