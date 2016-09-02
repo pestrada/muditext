@@ -8,6 +8,7 @@ import './body.html';
 
 Template.editor.onCreated(function () {
   this.autoSave = null;
+  this.editorCursor = { line: 0, ch: 0 }
 });
 
 Template.editor.helpers({
@@ -59,6 +60,7 @@ Template.editor.events({
       }
       instance.autoSave = Meteor.setTimeout(() => {
         Editor.save();
+        instance.editorCursor = instance.editor.getCursor("to");
       }, 1500);
     }
   }
@@ -90,6 +92,7 @@ Template.editor.onRendered( function() {
           var file = docs.fetch()[0].files[fileIndex];
           this.editor.setValue(lines);
           this.editor.setOption("mode","text/" + file.extension);
+          this.editor.setCursor(this.editorCursor.line, this.editorCursor.ch);
           $("#valores").html(file.name + "." + file.extension);
           $("#editorcode").attr("data-currentFile", fileIndex);
         }

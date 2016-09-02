@@ -34,12 +34,15 @@ Template.instructor.events({
 Template.instructor.onRendered( function() {
   this.editor = CodeMirror.fromTextArea( this.find( "#editorcode" ), {
     readOnly: true,
-    lineNumbers: true,
+    cursorHeight: 0.90,
     fixedGutter: true,
-    theme:"monokai",
-    mode:"text/html",
+    lineNumbers: true,
     lineWrapping: true,
-    cursorHeight: 0.90
+    matchBrackets: true,
+    mode:"text/html",
+    selectionPointer: true,
+    styleActiveLine: true,
+    theme:"monokai"
   });
 
   var projectName = window.location.pathname.split("/")[2];
