@@ -26,5 +26,5 @@ Muditext uses the following technologies:
 4. In a browser, open the url `http://localhost:3000`
 
 # Screenshots
-![screenshot1](https://github.com/pestrada/muditext/blob/master/screenshot1)
-![screenshot2](https://github.com/pestrada/muditext/blob/master/screenshot2)
+![screenshot1](https://github.com/pestrada/muditext/blob/master/screenshot1.png)
+![screenshot2](https://github.com/pestrada/muditext/blob/master/screenshot2.png)
